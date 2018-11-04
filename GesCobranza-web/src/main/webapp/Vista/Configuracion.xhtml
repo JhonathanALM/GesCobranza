@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+
+        <ui:composition template="./../Template/plantilla.xhtml">
+
+            <ui:define name="content">
+                Contenido de configuracion
+                <p:dataTable var="cliente" value="">
+                    <p:column headerText="Segmento">
+                   <!--     <h:outputText value="1. Clientes con deuda vencida en 1 - 16 días" />
+                        <h:outputText value="2. Clientes con deuda vencida en 17 - 31 días" />
+                        <h:outputText value="3. Clientes con deuda vencida en 32 - 46 días" />
+                        <h:outputText value="4. Clientes con deuda vencida en 47 - 61 días" />
+                        <h:outputText value="5. Clientes con deuda vencida por más de 61 días" />
+                   
+                   Debe ir en las filas eso hay q cargar
+                    -->
+                    </p:column>
+
+
+                    <p:column headerText="N Clientes">
+                        <h:outputText value="5" />
+                    </p:column>
+
+                    <p:column headerText="Facturas">
+                        <h:outputText value="6" />
+                    </p:column>
+
+                    <p:column headerText="Monto">
+                        <h:outputText value="" />
+                    </p:column>
+                    <p:column headerText="Configurar">
+                        <h:outputText value="" />
+
+                    </p:column>
+                </p:dataTable>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

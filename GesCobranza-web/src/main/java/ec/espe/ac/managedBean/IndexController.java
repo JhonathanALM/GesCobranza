@@ -1,4 +1,5 @@
 package ec.espe.ac.managedBean;
+
 import ec.edu.espe.ac.model.Usuario;
 import ec.edu.espe.ac.model.UsuarioFacadeLocal;
 import java.io.Serializable;
@@ -15,12 +16,13 @@ import javax.inject.Named;
 @Named
 @ViewScoped
 public class IndexController implements Serializable {
+
     @EJB
     private UsuarioFacadeLocal EJBUsuario;
     private Usuario usuario;
-    
+
     @PostConstruct
-    public void init (){
+    public void init() {
         usuario = new Usuario();
     }
 
@@ -31,28 +33,31 @@ public class IndexController implements Serializable {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-    
-    public String iniciarSesion(){
-        String redireccion="";
+
+    public String iniciarSesion() {
+        String redireccion = "";
         Usuario us;
-        try{
-            System.out.println("Este usuario va -> "+usuario.getNombre());
-            us = EJBUsuario.iniciarSesion(usuario,usuario.getNombre());
-            if(us!=null){
-                redireccion="/inicio?faces-redirect=true";
+        try {
+            System.out.println("Este usuario va -> " + usuario.getNombre());
+            us = EJBUsuario.iniciarSesion(usuario, usuario.getNombre());
+            if (us != null) {
+                // redireccion = "/Vista/Inicio?faces-redirect=true";
+                redireccion = "/Vista/Inicio?faces-redirect=true";
+
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", us);
-            }else{
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,"Aviso","Credenciales Incorrectas"));
+            } else {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Aviso", "Credenciales Incorrectas"));
                 System.out.println("Fallamos prro :( ");
             }
-            
-        }catch(Exception e){
-            System.out.println("Error: "+usuario.getId());
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL,"Aviso","ERROR!"));
+
+        } catch (Exception e) {
+            System.out.println("Error: " + usuario.getId());
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso", "ERROR!"));
         }
         return redireccion;
     }
-    public void cerrarSesion(){
+
+    public void cerrarSesion() {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
     }
 }
