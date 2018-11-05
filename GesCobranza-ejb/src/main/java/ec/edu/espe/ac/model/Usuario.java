@@ -1,7 +1,12 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package ec.edu.espe.ac.model;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,7 +21,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
- * @author jhona
+ *
+ * @author User
  */
 @Entity
 @Table(name = "USUARIO")
@@ -50,7 +56,7 @@ public class Usuario implements Serializable {
     @Column(name = "TIPO")
     private String tipo;
     @OneToMany(mappedBy = "id")
-    private Collection<Configcobranza> configcobranzaCollection;
+    private List<Configcobranza> configcobranzaList;
 
     public Usuario() {
     }
@@ -100,12 +106,12 @@ public class Usuario implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Configcobranza> getConfigcobranzaCollection() {
-        return configcobranzaCollection;
+    public List<Configcobranza> getConfigcobranzaList() {
+        return configcobranzaList;
     }
 
-    public void setConfigcobranzaCollection(Collection<Configcobranza> configcobranzaCollection) {
-        this.configcobranzaCollection = configcobranzaCollection;
+    public void setConfigcobranzaList(List<Configcobranza> configcobranzaList) {
+        this.configcobranzaList = configcobranzaList;
     }
 
     @Override
@@ -132,5 +138,5 @@ public class Usuario implements Serializable {
     public String toString() {
         return "ec.edu.espe.ac.model.Usuario[ id=" + id + " ]";
     }
-
+    
 }

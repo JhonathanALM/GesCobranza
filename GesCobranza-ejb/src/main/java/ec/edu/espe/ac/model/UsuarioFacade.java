@@ -3,6 +3,8 @@ package ec.edu.espe.ac.model;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -12,7 +14,8 @@ import javax.persistence.Query;
 @Stateless
 public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFacadeLocal {
 
-    @PersistenceContext(unitName = "ec.edu.espe.ac_GesCobranza-ejb_ejb_1PU")
+    @PersistenceContext(name = "ec.edu.espe.ac_GesCobranza-ejb_ejb_1PU")
+    
     private EntityManager em;
 
     @Override
@@ -23,6 +26,7 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
     public UsuarioFacade() {
         super(Usuario.class);
     }
+    @Override
     public Usuario iniciarSesion(Usuario us, String usu) {
         Usuario usuario = null;
         String consulta;
@@ -45,4 +49,24 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
         return usuario;
     }
 
+    public List<Usuario> listaUsuarioTodos()
+     {  
+        //EntityManagerFactory factory=Persistence.createEntityManagerFactory("ec.edu.espe.ac_GesCobranza-ejb_ejb_1PU");
+        //EntityManager em1=factory.createEntityManager();        
+        //pkg_jpa.Autor c1=new pkg_jpa.Autor();
+        Query query = em.createNamedQuery("Usuario.findAll");
+        List<Usuario> list;
+        try
+        {
+            list = query.getResultList();
+        }
+        catch (Exception ex)
+        {   
+            list=null;
+        } 
+        //em.close();
+        //factory.close();
+        return list;
+     }
+    
 }

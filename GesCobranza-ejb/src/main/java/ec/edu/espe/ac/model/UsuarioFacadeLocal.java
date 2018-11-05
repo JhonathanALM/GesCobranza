@@ -31,4 +31,7 @@ public interface UsuarioFacadeLocal {
 
     int count();
     
+    List<Usuario> listaUsuarioTodos();
+    
+    
 }

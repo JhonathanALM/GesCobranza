@@ -28,5 +28,6 @@ public interface CarteraFacadeLocal {
     List<Cartera> findRange(int[] range);
 
     int count();
-    
+
+    List<Cartera> listaCarteraTodos();
 }

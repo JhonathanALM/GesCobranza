@@ -1,6 +1,12 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package ec.edu.espe.ac.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -19,13 +25,16 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- * @author jhona
+ *
+ * @author User
  */
 @Entity
 @Table(name = "CONFIGCOBRANZA")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Configcobranza.findAll", query = "SELECT c FROM Configcobranza c")
+    , @NamedQuery(name = "Configcobranza.findByUserID", query = "SELECT c FROM Configcobranza c WHERE c.id = :userid")
+    , @NamedQuery(name = "Configcobranza.findByCarteraID", query = "SELECT c FROM Configcobranza c WHERE c.codigocartera = :codigocartera")
     , @NamedQuery(name = "Configcobranza.findByCodigoconf", query = "SELECT c FROM Configcobranza c WHERE c.codigoconf = :codigoconf")
     , @NamedQuery(name = "Configcobranza.findByAccion", query = "SELECT c FROM Configcobranza c WHERE c.accion = :accion")
     , @NamedQuery(name = "Configcobranza.findByEstado", query = "SELECT c FROM Configcobranza c WHERE c.estado = :estado")
@@ -36,39 +45,27 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Configcobranza implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 16)
     @Column(name = "CODIGOCONF")
-    private String codigoconf;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 150)
+    private BigDecimal codigoconf;
+    @Size(max = 150)
     @Column(name = "ACCION")
     private String accion;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 128)
+    @Size(max = 100)
     @Column(name = "ESTADO")
     private String estado;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "FECHAATENCION")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaatencion;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 256)
+    @Size(max = 150)
     @Column(name = "RESULTADO")
     private String resultado;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 1028)
+    @Size(max = 150)
     @Column(name = "DETALLERESULTADO")
     private String detalleresultado;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "COSTOLLAMADA")
     private BigInteger costollamada;
     @JoinColumn(name = "CODIGOCARTERA", referencedColumnName = "CODIGOCARTERA")
@@ -81,25 +78,15 @@ public class Configcobranza implements Serializable {
     public Configcobranza() {
     }
 
-    public Configcobranza(String codigoconf) {
+    public Configcobranza(BigDecimal codigoconf) {
         this.codigoconf = codigoconf;
     }
 
-    public Configcobranza(String codigoconf, String accion, String estado, Date fechaatencion, String resultado, String detalleresultado, BigInteger costollamada) {
-        this.codigoconf = codigoconf;
-        this.accion = accion;
-        this.estado = estado;
-        this.fechaatencion = fechaatencion;
-        this.resultado = resultado;
-        this.detalleresultado = detalleresultado;
-        this.costollamada = costollamada;
-    }
-
-    public String getCodigoconf() {
+    public BigDecimal getCodigoconf() {
         return codigoconf;
     }
 
-    public void setCodigoconf(String codigoconf) {
+    public void setCodigoconf(BigDecimal codigoconf) {
         this.codigoconf = codigoconf;
     }
 
@@ -191,5 +178,5 @@ public class Configcobranza implements Serializable {
     public String toString() {
         return "ec.edu.espe.ac.model.Configcobranza[ codigoconf=" + codigoconf + " ]";
     }
-
+    
 }

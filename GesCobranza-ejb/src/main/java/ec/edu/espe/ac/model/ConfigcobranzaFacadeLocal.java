@@ -29,4 +29,9 @@ public interface ConfigcobranzaFacadeLocal {
 
     int count();
     
+    int insertarConfigDia();
+    
+    int numeroConfigPorCartera(Cartera carteraId);
+    
+    public int numeroConfigPorUser(Usuario id);
 }

@@ -1,9 +1,15 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package ec.edu.espe.ac.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.Collection;
+import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,13 +18,16 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
- * @author jhona
+ *
+ * @author User
  */
 @Entity
 @Table(name = "CARTERA")
@@ -26,6 +35,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Cartera.findAll", query = "SELECT c FROM Cartera c")
     , @NamedQuery(name = "Cartera.findByCodigocartera", query = "SELECT c FROM Cartera c WHERE c.codigocartera = :codigocartera")
+    , @NamedQuery(name = "Cartera.findByFechacarga", query = "SELECT c FROM Cartera c WHERE c.fechacarga = :fechacarga")
+    , @NamedQuery(name = "Cartera.findByCiRuc", query = "SELECT c FROM Cartera c WHERE c.ciRuc = :ciRuc")
     , @NamedQuery(name = "Cartera.findByNombrecliente", query = "SELECT c FROM Cartera c WHERE c.nombrecliente = :nombrecliente")
     , @NamedQuery(name = "Cartera.findByNombreproducto", query = "SELECT c FROM Cartera c WHERE c.nombreproducto = :nombreproducto")
     , @NamedQuery(name = "Cartera.findByDireccioncliente", query = "SELECT c FROM Cartera c WHERE c.direccioncliente = :direccioncliente")
@@ -38,8 +49,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Cartera.findByValorcuota", query = "SELECT c FROM Cartera c WHERE c.valorcuota = :valorcuota")
     , @NamedQuery(name = "Cartera.findByMonto", query = "SELECT c FROM Cartera c WHERE c.monto = :monto")
     , @NamedQuery(name = "Cartera.findByMontointereses", query = "SELECT c FROM Cartera c WHERE c.montointereses = :montointereses")
-    , @NamedQuery(name = "Cartera.findByMontototal", query = "SELECT c FROM Cartera c WHERE c.montototal = :montototal")
-    , @NamedQuery(name = "Cartera.findByCiRuc", query = "SELECT c FROM Cartera c WHERE c.ciRuc = :ciRuc")})
+    , @NamedQuery(name = "Cartera.findByMontototal", query = "SELECT c FROM Cartera c WHERE c.montototal = :montototal")})
 public class Cartera implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -49,73 +59,48 @@ public class Cartera implements Serializable {
     @Size(min = 1, max = 20)
     @Column(name = "CODIGOCARTERA")
     private String codigocartera;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
+    @Column(name = "FECHACARGA")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fechacarga;
+    @Size(max = 16)
+    @Column(name = "CI_RUC")
+    private String ciRuc;
+    @Size(max = 100)
     @Column(name = "NOMBRECLIENTE")
     private String nombrecliente;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 80)
+    @Size(max = 80)
     @Column(name = "NOMBREPRODUCTO")
     private String nombreproducto;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 200)
+    @Size(max = 200)
     @Column(name = "DIRECCIONCLIENTE")
     private String direccioncliente;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 15)
+    @Size(max = 15)
     @Column(name = "TELEFONOCLIENTE")
     private String telefonocliente;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
+    @Size(max = 100)
     @Column(name = "NOMBREREFERENCIA")
     private String nombrereferencia;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 20)
+    @Size(max = 20)
     @Column(name = "PARENTESCOREFERENCIA")
     private String parentescoreferencia;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 15)
+    @Size(max = 15)
     @Column(name = "TELEFONOREFERENCIA")
     private String telefonoreferencia;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "NUMEROCUOTASVENCIDAS")
     private BigInteger numerocuotasvencidas;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "DIASMORA")
     private BigInteger diasmora;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "VALORCUOTA")
     private BigDecimal valorcuota;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "MONTO")
     private BigDecimal monto;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "MONTOINTERESES")
     private BigDecimal montointereses;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "MONTOTOTAL")
     private BigDecimal montototal;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 16)
-    @Column(name = "CI_RUC")
-    private String ciRuc;
     @OneToMany(mappedBy = "codigocartera")
-    private Collection<Configcobranza> configcobranzaCollection;
+    private List<Configcobranza> configcobranzaList;
 
     public Cartera() {
     }
@@ -124,30 +109,28 @@ public class Cartera implements Serializable {
         this.codigocartera = codigocartera;
     }
 
-    public Cartera(String codigocartera, String nombrecliente, String nombreproducto, String direccioncliente, String telefonocliente, String nombrereferencia, String parentescoreferencia, String telefonoreferencia, BigInteger numerocuotasvencidas, BigInteger diasmora, BigDecimal valorcuota, BigDecimal monto, BigDecimal montointereses, BigDecimal montototal, String ciRuc) {
-        this.codigocartera = codigocartera;
-        this.nombrecliente = nombrecliente;
-        this.nombreproducto = nombreproducto;
-        this.direccioncliente = direccioncliente;
-        this.telefonocliente = telefonocliente;
-        this.nombrereferencia = nombrereferencia;
-        this.parentescoreferencia = parentescoreferencia;
-        this.telefonoreferencia = telefonoreferencia;
-        this.numerocuotasvencidas = numerocuotasvencidas;
-        this.diasmora = diasmora;
-        this.valorcuota = valorcuota;
-        this.monto = monto;
-        this.montointereses = montointereses;
-        this.montototal = montototal;
-        this.ciRuc = ciRuc;
-    }
-
     public String getCodigocartera() {
         return codigocartera;
     }
 
     public void setCodigocartera(String codigocartera) {
         this.codigocartera = codigocartera;
+    }
+
+    public Date getFechacarga() {
+        return fechacarga;
+    }
+
+    public void setFechacarga(Date fechacarga) {
+        this.fechacarga = fechacarga;
+    }
+
+    public String getCiRuc() {
+        return ciRuc;
+    }
+
+    public void setCiRuc(String ciRuc) {
+        this.ciRuc = ciRuc;
     }
 
     public String getNombrecliente() {
@@ -254,21 +237,13 @@ public class Cartera implements Serializable {
         this.montototal = montototal;
     }
 
-    public String getCiRuc() {
-        return ciRuc;
-    }
-
-    public void setCiRuc(String ciRuc) {
-        this.ciRuc = ciRuc;
-    }
-
     @XmlTransient
-    public Collection<Configcobranza> getConfigcobranzaCollection() {
-        return configcobranzaCollection;
+    public List<Configcobranza> getConfigcobranzaList() {
+        return configcobranzaList;
     }
 
-    public void setConfigcobranzaCollection(Collection<Configcobranza> configcobranzaCollection) {
-        this.configcobranzaCollection = configcobranzaCollection;
+    public void setConfigcobranzaList(List<Configcobranza> configcobranzaList) {
+        this.configcobranzaList = configcobranzaList;
     }
 
     @Override
@@ -295,5 +270,5 @@ public class Cartera implements Serializable {
     public String toString() {
         return "ec.edu.espe.ac.model.Cartera[ codigocartera=" + codigocartera + " ]";
     }
-
+    
 }
