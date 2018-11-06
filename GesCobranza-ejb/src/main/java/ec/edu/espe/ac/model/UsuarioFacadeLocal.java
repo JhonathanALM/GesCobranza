@@ -28,6 +28,8 @@ public interface UsuarioFacadeLocal {
     List<Usuario> findRange(int[] range);
     
     Usuario iniciarSesion(Usuario us, String usu);
+    
+    String hola();
 
     int count();
     

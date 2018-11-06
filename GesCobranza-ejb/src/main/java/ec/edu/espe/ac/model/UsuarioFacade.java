@@ -3,8 +3,6 @@ package ec.edu.espe.ac.model;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -68,5 +66,11 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
         //factory.close();
         return list;
      }
+
+    @Override
+    public String hola() {
+        System.out.println("Hola mundo? :( ?");
+        return "hola";
+    }
     
 }

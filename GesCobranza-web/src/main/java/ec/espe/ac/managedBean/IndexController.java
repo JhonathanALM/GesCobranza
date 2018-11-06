@@ -1,5 +1,7 @@
 package ec.espe.ac.managedBean;
 
+import ec.edu.espe.ac.model.Cartera;
+import ec.edu.espe.ac.model.CarteraFacadeLocal;
 import ec.edu.espe.ac.model.Usuario;
 import ec.edu.espe.ac.model.UsuarioFacadeLocal;
 import java.io.Serializable;
@@ -20,6 +22,10 @@ public class IndexController implements Serializable {
     @EJB
     private UsuarioFacadeLocal EJBUsuario;
     private Usuario usuario;
+    
+    @EJB
+    private CarteraFacadeLocal EJBCartera;
+    private Cartera cartera;
 
     @PostConstruct
     public void init() {
@@ -55,6 +61,10 @@ public class IndexController implements Serializable {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso", "ERROR!"));
         }
         return redireccion;
+    }
+    public String nan(){
+        EJBCartera.create2(cartera);
+        return " ";
     }
 
     public void cerrarSesion() {

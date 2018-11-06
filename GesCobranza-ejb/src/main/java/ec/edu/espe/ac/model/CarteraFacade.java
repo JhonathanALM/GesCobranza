@@ -66,6 +66,12 @@ public class CarteraFacade extends AbstractFacade<Cartera> implements CarteraFac
         factory.close();
         return list;
      }
+
+    @Override
+    public void create2(Cartera cartera) {
+        System.out.println("Llegue al crear? ");
+        em.persist(cartera);
+    }
     
     
 

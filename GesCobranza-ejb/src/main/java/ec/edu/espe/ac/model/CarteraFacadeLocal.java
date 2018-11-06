@@ -16,7 +16,7 @@ import javax.ejb.Local;
 public interface CarteraFacadeLocal {
 
     void create(Cartera cartera);
-
+    void create2(Cartera cartera);
     void edit(Cartera cartera);
 
     void remove(Cartera cartera);
