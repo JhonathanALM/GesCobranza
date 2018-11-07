@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ec.edu.espe.ac.model;
+package ec.edu.espe.ac.session;
 
+import ec.edu.espe.ac.model.Cartera;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -16,7 +17,7 @@ import javax.ejb.Local;
 public interface CarteraFacadeLocal {
 
     void create(Cartera cartera);
-    void create2(Cartera cartera);
+
     void edit(Cartera cartera);
 
     void remove(Cartera cartera);
@@ -28,6 +29,5 @@ public interface CarteraFacadeLocal {
     List<Cartera> findRange(int[] range);
 
     int count();
-
-    List<Cartera> listaCarteraTodos();
+    
 }

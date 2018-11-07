@@ -1,9 +1,7 @@
 package ec.espe.ac.managedBean;
 
-import ec.edu.espe.ac.model.Cartera;
-import ec.edu.espe.ac.model.CarteraFacadeLocal;
-import ec.edu.espe.ac.model.Usuario;
-import ec.edu.espe.ac.model.UsuarioFacadeLocal;
+import ec.edu.espe.ac.model.Agente;
+import ec.edu.espe.ac.session.AgenteFacadeLocal;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -20,53 +18,44 @@ import javax.inject.Named;
 public class IndexController implements Serializable {
 
     @EJB
-    private UsuarioFacadeLocal EJBUsuario;
-    private Usuario usuario;
+    private AgenteFacadeLocal EJBAgente;
+    private Agente agente;
     
-    @EJB
-    private CarteraFacadeLocal EJBCartera;
-    private Cartera cartera;
-
     @PostConstruct
     public void init() {
-        usuario = new Usuario();
+        agente = new Agente();
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public Agente getAgente() {
+        return agente;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setAgente(Agente agente) {
+        this.agente = agente;
     }
 
     public String iniciarSesion() {
         String redireccion = "";
-        Usuario us;
+        Agente us;
         try {
-            System.out.println("Este usuario va -> " + usuario.getNombre());
-            us = EJBUsuario.iniciarSesion(usuario, usuario.getNombre());
+            System.out.println("Este agente va -> " + agente.getNombre());
+            us = EJBAgente.iniciarSesion(agente, agente.getNombre());
             if (us != null) {
                 // redireccion = "/Vista/Inicio?faces-redirect=true";
                 redireccion = "/Vista/Inicio?faces-redirect=true";
 
-                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", us);
+                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("agente", us);
             } else {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Aviso", "Credenciales Incorrectas"));
                 System.out.println("Fallamos prro :( ");
             }
 
         } catch (Exception e) {
-            System.out.println("Error: " + usuario.getId());
+            System.out.println("Error: " + agente.getClave());
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso", "ERROR!"));
         }
         return redireccion;
     }
-    public String nan(){
-        EJBCartera.create2(cartera);
-        return " ";
-    }
-
     public void cerrarSesion() {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
     }

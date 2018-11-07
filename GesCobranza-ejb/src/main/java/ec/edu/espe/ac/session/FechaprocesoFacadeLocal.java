@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ec.edu.espe.ac.model;
+package ec.edu.espe.ac.session;
 
+import ec.edu.espe.ac.model.Fechaproceso;
 import java.util.List;
 import javax.ejb.Local;
 

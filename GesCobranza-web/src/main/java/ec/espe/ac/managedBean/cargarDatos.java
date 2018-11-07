@@ -1,7 +1,7 @@
 package ec.espe.ac.managedBean;
 
 import ec.edu.espe.ac.model.Cartera;
-import ec.edu.espe.ac.model.CarteraFacadeLocal;
+import ec.edu.espe.ac.session.CarteraFacadeLocal;
 import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Level;
@@ -62,7 +62,7 @@ public class cargarDatos implements Serializable {
     }
 
     private void transferData(List<String> readSource) {
-        Iterator iter = readSource.iterator();
+       /* Iterator iter = readSource.iterator();
         String[] values;
         StringBuilder sb = new StringBuilder();
         int i=0;
@@ -88,7 +88,7 @@ public class cargarDatos implements Serializable {
             ct.setMontototal(BigDecimal.valueOf(Double.valueOf(values[13])));
             this.EJBCartera.create(this.ct);
             i=i+1;
-        }
+        }*/
     }
     
     /*public String add(){

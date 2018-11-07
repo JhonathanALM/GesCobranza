@@ -1,6 +1,7 @@
 package ec.edu.espe.ac.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -29,12 +30,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Fechaproceso implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 8)
     @Column(name = "CODFEPROC")
-    private String codfeproc;
+    private BigDecimal codfeproc;
     @Column(name = "FECHA")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
@@ -45,15 +46,15 @@ public class Fechaproceso implements Serializable {
     public Fechaproceso() {
     }
 
-    public Fechaproceso(String codfeproc) {
+    public Fechaproceso(BigDecimal codfeproc) {
         this.codfeproc = codfeproc;
     }
 
-    public String getCodfeproc() {
+    public BigDecimal getCodfeproc() {
         return codfeproc;
     }
 
-    public void setCodfeproc(String codfeproc) {
+    public void setCodfeproc(BigDecimal codfeproc) {
         this.codfeproc = codfeproc;
     }
 

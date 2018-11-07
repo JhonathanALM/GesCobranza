@@ -1,4 +1,4 @@
-package ec.edu.espe.ac.model;
+package ec.edu.espe.ac.session;
 
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -17,7 +17,6 @@ public abstract class AbstractFacade<T> {
     protected abstract EntityManager getEntityManager();
 
     public void create(T entity) {
-        
         getEntityManager().persist(entity);
     }
 

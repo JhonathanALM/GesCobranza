@@ -1,5 +1,6 @@
-package ec.edu.espe.ac.model;
+package ec.edu.espe.ac.session;
 
+import ec.edu.espe.ac.model.Permora;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -8,7 +9,7 @@ import javax.persistence.PersistenceContext;
  * @author jhona
  */
 @Stateless
-public class FechaprocesoFacade extends AbstractFacade<Fechaproceso> implements FechaprocesoFacadeLocal {
+public class PermoraFacade extends AbstractFacade<Permora> implements PermoraFacadeLocal {
 
     @PersistenceContext(unitName = "ec.edu.espe.ac_GesCobranza-ejb_ejb_1PU")
     private EntityManager em;
@@ -18,8 +19,8 @@ public class FechaprocesoFacade extends AbstractFacade<Fechaproceso> implements 
         return em;
     }
 
-    public FechaprocesoFacade() {
-        super(Fechaproceso.class);
+    public PermoraFacade() {
+        super(Permora.class);
     }
 
 }
