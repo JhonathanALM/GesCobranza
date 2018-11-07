@@ -8,12 +8,19 @@
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <h:outputStylesheet name="./css/default.css"/>
-        <h:outputStylesheet name="./css/cssLayout.css"/>
-        <title>Facelets Template</title>
+        <!--h:outputStylesheet name="css/default.css"/>
+        <h:outputStylesheet name="css/cssLayout.css"/-->
+        <title>Modulo Gestion Cobranzas| Dashboard</title>
     </h:head>
 
     <h:body>
+        <p:toolbar>
+            <f:facet name="right">
+                <h:outputLabel for="name" value="#{indexController.actual}" />
+                <p:link>Salir  </p:link>
+            </f:facet>
+
+        </p:toolbar>
 
         <div id="top">
             <ui:insert name="top"></ui:insert>
@@ -41,9 +48,7 @@
             </p:tabMenu>
 
         </div>
-        <div align="right" id="usu">
-            <h:link>Usuario</h:link>
-        </div>
+
 
 
         <div id="content" class="center_content">
@@ -54,9 +59,6 @@
             <div id="bottom">
                 <ui:insert name="bottom"></ui:insert>
                 <h4>
-                    Grupo 3
-                    Jonathan Lechon
-                    Pamela Orta
 
                 </h4>
 

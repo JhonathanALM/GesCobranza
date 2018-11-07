@@ -32,4 +32,6 @@ public interface AgenteFacadeLocal {
     
     int count();
     
+    List<Agente> listaAgenteTodos();
+    
 }

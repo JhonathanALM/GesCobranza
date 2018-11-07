@@ -46,6 +46,25 @@ public class AgenteFacade extends AbstractFacade<Agente> implements AgenteFacade
         }
         return agente;
     }
+    public List<Agente> listaAgenteTodos()
+     {  
+        //EntityManagerFactory factory=Persistence.createEntityManagerFactory("ec.edu.espe.ac_GesCobranza-ejb_ejb_1PU");
+        //EntityManager em1=factory.createEntityManager();        
+        //pkg_jpa.Autor c1=new pkg_jpa.Autor();
+        Query query = em.createNamedQuery("Agente.findAll");
+        List<Agente> list;
+        try
+        {
+            list = query.getResultList();
+        }
+        catch (Exception ex)
+        {   
+            list=null;
+        } 
+        //em.close();
+        //factory.close();
+        return list;
+     }
 
 
 }

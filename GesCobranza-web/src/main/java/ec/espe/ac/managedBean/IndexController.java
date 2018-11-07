@@ -20,6 +20,7 @@ public class IndexController implements Serializable {
     @EJB
     private AgenteFacadeLocal EJBAgente;
     private Agente agente;
+    private String actual;
     
     @PostConstruct
     public void init() {
@@ -36,15 +37,17 @@ public class IndexController implements Serializable {
 
     public String iniciarSesion() {
         String redireccion = "";
-        Agente us;
+        
         try {
+            Agente us;
             System.out.println("Este agente va -> " + agente.getNombre());
             us = EJBAgente.iniciarSesion(agente, agente.getNombre());
             if (us != null) {
                 // redireccion = "/Vista/Inicio?faces-redirect=true";
                 redireccion = "/Vista/Inicio?faces-redirect=true";
-
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("agente", us);
+      
+                
             } else {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Aviso", "Credenciales Incorrectas"));
                 System.out.println("Fallamos prro :( ");
@@ -56,7 +59,19 @@ public class IndexController implements Serializable {
         }
         return redireccion;
     }
+
     public void cerrarSesion() {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+    }
+
+    public String getActual() {
+        Agente as = (Agente) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("agente");
+        System.out.println("Bienvenido Agente: "+as.getNombre());
+        return as.getNombre()+"       |";
+    }
+
+    public void setActual(String actual) {
+        
+        this.actual=actual;
     }
 }

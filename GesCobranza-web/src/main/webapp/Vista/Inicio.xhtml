@@ -15,29 +15,37 @@
             </ui:define>
 
             <ui:define name="content">
-                
-                <p:dataTable var="inicio" value="">
-                    <p:column headerText="Descripción">
-                        <h:outputText value="" />
-                    </p:column>
+                <div class="ui-g-8 ui-g-nopad">
+                    <div class="ui-g-5 "><h1>Total De Ventas a Cobrar</h1> </div>
+                    <div class="ui-g-2 "><h1> </h1> </div>
+                    <div class="ui-g-5 "><p:calendar id="inline" mode="inline" /></div>    
+                </div>
 
-                    <p:column headerText="Número">
-                        <h:outputText value="" />
-                    </p:column>
+                <div class="ui-g-12 ui-md-10">
+                    <p:dataTable var="inicio" value="">
+                        <p:column headerText="Descripción">
+                            <h:outputText value="" />
+                        </p:column>
 
-                    <p:column headerText="Real">
-                        <h:outputText value="" />
-                    </p:column>
+                        <p:column headerText="Número">
+                            <h:outputText value="" />
+                        </p:column>
 
-                    <p:column headerText="Porcentaje">
-                        <h:outputText value="" />
-                    </p:column>
-                </p:dataTable>
+                        <p:column headerText="Real">
+                            <h:outputText value="" />
+                        </p:column>
+
+                        <p:column headerText="Porcentaje">
+                            <h:outputText value="" />
+                        </p:column>
+                    </p:dataTable>
+                </div>
+
 
             </ui:define>
 
             <ui:define name="bottom">
-              
+
             </ui:define>
 
         </ui:composition>

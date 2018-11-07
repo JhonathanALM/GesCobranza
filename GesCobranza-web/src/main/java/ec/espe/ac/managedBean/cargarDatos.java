@@ -1,6 +1,10 @@
 package ec.espe.ac.managedBean;
 
+import ec.edu.espe.ac.model.Agente;
+import ec.edu.espe.ac.model.Cartera;
 import ec.edu.espe.ac.model.Permora;
+import ec.edu.espe.ac.session.AgenteFacadeLocal;
+import ec.edu.espe.ac.session.CarteraFacadeLocal;
 import ec.edu.espe.ac.session.PermoraFacadeLocal;
 import java.io.Serializable;
 import java.util.List;
@@ -14,6 +18,7 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.Random;
 import java.util.logging.Logger;
 import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
@@ -32,6 +37,14 @@ public class cargarDatos implements Serializable {
     private PermoraFacadeLocal EJBPermora;
     private Permora ct = new Permora();
 
+    @EJB
+    private AgenteFacadeLocal EJBAgente;
+    private Agente ag = new Agente();
+
+    @EJB
+    private CarteraFacadeLocal EJBCartera;
+    private Cartera ca = new Cartera();
+
     public String add() {
         int cont = 1;
         System.out.println("Entro a cargar...");
@@ -47,7 +60,8 @@ public class cargarDatos implements Serializable {
         }
         System.out.println("Dia " + cont);
         cont++;
-        return "inicio";
+        distribuir();
+        return "index";
     }
 
     private List<String> verificateFiles(File file) throws IOException {
@@ -62,14 +76,13 @@ public class cargarDatos implements Serializable {
     }
 
     private void transferData(List<String> readSource) {
-       Iterator iter = readSource.iterator();
+        Iterator iter = readSource.iterator();
         String[] values;
         StringBuilder sb = new StringBuilder();
-        int i=0;
+        int i = 0;
         while (iter.hasNext()) {
-            Permora cr= new Permora();
             values = iter.next().toString().split(",");
-            System.out.println("Hola : " + values[0] + " " + values[1]);                    
+            System.out.println("Hola : " + values[0] + " " + values[1]);
             ct.setCodigopermora(BigDecimal.valueOf(Long.valueOf(i)));
             ct.setFechacarga(new java.sql.Date(new java.util.Date().getTime()));
             ct.setCiRuc(values[0]);
@@ -91,28 +104,23 @@ public class cargarDatos implements Serializable {
             ct.setComentario(values[16]);
             ct.setInstfinanciera(values[17]);
             this.EJBPermora.create(this.ct);
-            i=i+1;
+            i = i + 1;
         }
     }
-    
-    /*public String add(){
-        //System.out.println("anaianaianianainainaiani");
-        this.ct.setCodigocartera("1");
-        this.ct.setFechacarga(new java.sql.Date(new java.util.Date().getTime()));
-        cargar();
-        System.out.println(ct.getCodigocartera()+" "+ct.getFechacarga()+"-"+ct.getNombrecliente());
-        this.EJBPermora.create(this.ct);
-        return "index";
-    }*/
 
-    /*public Permora getCt() {
-        return ct;
+    public void distribuir() {
+        List<Agente> aa = this.EJBAgente.listaAgenteTodos();
+        List<Permora> pp = this.EJBPermora.listaPermoraTodos();
+        Random r = new Random();
+        for (int i = 0; i < EJBPermora.listaPermoraTodos().size(); i++) {
+            ca.setCodigocar(BigDecimal.valueOf(Long.valueOf(i)));
+            ca.setCodigoagente(aa.get(r.nextInt(2) + 1));
+            ca.setCodigopermora(pp.get(r.nextInt(20) + 1));
+            ca.setFechaasig(new java.sql.Date(new java.util.Date().getTime()));
+            ca.setEstadoasig(BigInteger.valueOf(1));
+            this.EJBCartera.create(ca);
+        }
+
     }
-
-    public void setCt(Permora ct) {
-        this.ct = ct;
-    }*/
-
-    
 
 }

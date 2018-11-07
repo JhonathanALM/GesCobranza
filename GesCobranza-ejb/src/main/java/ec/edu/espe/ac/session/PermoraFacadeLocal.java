@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package ec.edu.espe.ac.session;
-
 import ec.edu.espe.ac.model.Permora;
 import java.util.List;
 import javax.ejb.Local;
@@ -29,5 +28,7 @@ public interface PermoraFacadeLocal {
     List<Permora> findRange(int[] range);
 
     int count();
+    
+    List<Permora> listaPermoraTodos();
     
 }
