@@ -1,7 +1,7 @@
 package ec.espe.ac.managedBean;
 
-import ec.edu.espe.ac.model.Cartera;
-import ec.edu.espe.ac.session.CarteraFacadeLocal;
+import ec.edu.espe.ac.model.Permora;
+import ec.edu.espe.ac.session.PermoraFacadeLocal;
 import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Level;
@@ -29,8 +29,8 @@ import sun.applet.Main;
 public class cargarDatos implements Serializable {
 
     @EJB
-    private CarteraFacadeLocal EJBCartera;
-    private Cartera ct = new Cartera();
+    private PermoraFacadeLocal EJBPermora;
+    private Permora ct = new Permora();
 
     public String add() {
         int cont = 1;
@@ -62,33 +62,37 @@ public class cargarDatos implements Serializable {
     }
 
     private void transferData(List<String> readSource) {
-       /* Iterator iter = readSource.iterator();
+       Iterator iter = readSource.iterator();
         String[] values;
         StringBuilder sb = new StringBuilder();
         int i=0;
         while (iter.hasNext()) {
-            Cartera cr= new Cartera();
+            Permora cr= new Permora();
             values = iter.next().toString().split(",");
             System.out.println("Hola : " + values[0] + " " + values[1]);                    
-            ct.setCodigocartera(i+"");
+            ct.setCodigopermora(BigDecimal.valueOf(Long.valueOf(i)));
             ct.setFechacarga(new java.sql.Date(new java.util.Date().getTime()));
             ct.setCiRuc(values[0]);
             ct.setNombrecliente(values[1]);
             ct.setNombreproducto(values[2]);
             ct.setDireccioncliente(values[3]);
-            ct.setTelefonocliente(values[4]);
-            ct.setNombrereferencia(values[5]);
-            ct.setParentescoreferencia(values[6]);
-            ct.setTelefonoreferencia(values[7]);
-            ct.setNumerocuotasvencidas(BigInteger.valueOf(Long.valueOf(values[8])));
-            ct.setDiasmora(BigInteger.valueOf(Long.valueOf(values[9])));
-            ct.setValorcuota(BigDecimal.valueOf(Double.valueOf(values[10])));
-            ct.setMonto(BigDecimal.valueOf(Double.valueOf(values[11])));
-            ct.setMontointereses(BigDecimal.valueOf(Double.valueOf(values[12])));
-            ct.setMontototal(BigDecimal.valueOf(Double.valueOf(values[13])));
-            this.EJBCartera.create(this.ct);
+            ct.setTelefono1cliente(values[4]);
+            ct.setTelefono2cliente(values[5]);
+            ct.setCorreocliente(values[6]);
+            ct.setNombrereferencia(values[7]);
+            ct.setParentescoreferencia(values[8]);
+            ct.setTelefonoreferencia(values[9]);
+            ct.setNumerocuotasvencidas(BigInteger.valueOf(Long.valueOf(values[10])));
+            ct.setDiasmora(BigInteger.valueOf(Long.valueOf(values[11])));
+            ct.setValorcuota(BigDecimal.valueOf(Double.valueOf(values[12])));
+            ct.setMonto(BigDecimal.valueOf(Double.valueOf(values[13])));
+            ct.setMontointereses(BigDecimal.valueOf(Double.valueOf(values[14])));
+            ct.setMontototal(BigDecimal.valueOf(Double.valueOf(values[15])));
+            ct.setComentario(values[16]);
+            ct.setInstfinanciera(values[17]);
+            this.EJBPermora.create(this.ct);
             i=i+1;
-        }*/
+        }
     }
     
     /*public String add(){
@@ -97,15 +101,15 @@ public class cargarDatos implements Serializable {
         this.ct.setFechacarga(new java.sql.Date(new java.util.Date().getTime()));
         cargar();
         System.out.println(ct.getCodigocartera()+" "+ct.getFechacarga()+"-"+ct.getNombrecliente());
-        this.EJBCartera.create(this.ct);
+        this.EJBPermora.create(this.ct);
         return "index";
     }*/
 
-    /*public Cartera getCt() {
+    /*public Permora getCt() {
         return ct;
     }
 
-    public void setCt(Cartera ct) {
+    public void setCt(Permora ct) {
         this.ct = ct;
     }*/
 
