@@ -11,19 +11,40 @@
         <ui:composition template="./../Template/plantilla.xhtml">
 
             <ui:define name="content">
+                <h:form id="form">
+                    <div class="ui-g-12 ui-md-10">
 
-                <p:dataTable var="cl" value="#{indexController.clientes}">
-                
-                    <p:column headerText="Telefono">
-                        <h:outputText value="#{cl.codigoagente}" />
-                    </p:column>
+                        <p:dataTable value="#{clientesController.items}"  var="item" >
 
-                    <!--p:column headerText="Monto adeudado">
-                        <h:outputText value="#{clie.codigopermora.monto}" />
-                    </p:column-->
-
-                    
-                </p:dataTable>
+                            <p:column headerText="Nombre">
+                                <h:outputText value="#{item.codigopermora.nombrecliente}" />
+                            </p:column>     
+                            <p:column headerText="Cedula">
+                                <h:outputText value="#{item.codigopermora.ciRuc}" />
+                            </p:column>  
+                            <p:column headerText="Correo">
+                                <h:outputText value="#{item.codigopermora.correocliente}" />
+                            </p:column> 
+                            <p:column headerText="Monto">
+                                <h:outputText value="#{item.codigopermora.monto}" />
+                            </p:column> 
+                            <p:column headerText="Monto Total">
+                                <h:outputText value="#{item.codigopermora.montototal}" />
+                            </p:column> 
+                            <p:column headerText="Dias Mora">
+                                <h:outputText value="#{item.codigopermora.diasmora}" />
+                            </p:column> 
+                            <p:column headerText="Institucion">
+                                <h:outputText value="#{item.codigopermora.instfinanciera}" />
+                            </p:column> 
+                            <p:column style="width:32px;text-align: center">
+                                <p:commandButton  icon="ui-icon-search" title="View" action="Cliente">
+                                    <f:setPropertyActionListener value="#{item}" target="#{clientesController.selected}" />
+                                </p:commandButton>
+                            </p:column>
+                        </p:dataTable>
+                    </div>
+                </h:form>
             </ui:define>
 
         </ui:composition>

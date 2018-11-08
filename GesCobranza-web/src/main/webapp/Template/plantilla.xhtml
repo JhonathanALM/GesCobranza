@@ -8,19 +8,25 @@
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <!--h:outputStylesheet name="css/default.css"/>
-        <h:outputStylesheet name="css/cssLayout.css"/-->
         <title>Modulo Gestion Cobranzas| Dashboard</title>
+        <f:event type ="preRenderView" listener="#{plantillaController.verificarSesion()}"/>
     </h:head>
 
     <h:body>
-        <p:toolbar>
-            <f:facet name="right">
-                <h:outputLabel for="name" value="#{indexController.actual}" />
-                <p:link>Salir  </p:link>
-            </f:facet>
+        <h:form>
+            
+                  
+            
+            <p:toolbar>
+                   
+                <f:facet name="right">
+                    <h:outputLabel for="name" value="#{indexController.actual}" />
+                    <p:commandLink value = "Cerrar Sesion" actionListener="#{indexController.cerrarSesion()}" action="/index?faces-redirect=true"/>   
+             </f:facet>
+                
+            </p:toolbar>    
+        </h:form>
 
-        </p:toolbar>
 
         <div id="top">
             <ui:insert name="top"></ui:insert>
@@ -32,9 +38,6 @@
                 <p:menuitem value="Lista de Clientes" outcome="/Vista/Menu Cliente" icon="ui-icon-user">
                     <f:param name="i" value="1" />
                 </p:menuitem>
-                <p:menuitem value="Cliente" outcome="/Vista/Cliente" icon="ui-icon-user">
-                    <f:param name="i" value="1" />
-                </p:menuitem>
                 <p:menuitem value="Configuracion" outcome="/Vista/Configuracion" icon="ui-icon-wrench">
                     <f:param name="i" value="2" />
                 </p:menuitem>
@@ -42,7 +45,7 @@
                     <f:param name="i" value="3" />
                 </p:menuitem>
                 <p:menuitem value="Reporte Banco" outcome="/Vista/Reporte_Banco" icon="ui-icon-document">
-                    <f:param name="i" value="3" />
+                    <f:param name="i" value="4" />
                 </p:menuitem>
 
             </p:tabMenu>

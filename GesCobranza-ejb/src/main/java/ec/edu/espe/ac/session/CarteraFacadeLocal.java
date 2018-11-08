@@ -5,7 +5,9 @@
  */
 package ec.edu.espe.ac.session;
 
+import ec.edu.espe.ac.model.Agente;
 import ec.edu.espe.ac.model.Cartera;
+import java.math.BigDecimal;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -31,6 +33,6 @@ public interface CarteraFacadeLocal {
     int count();
     
     List<Cartera> listaCarteraTodos();
-    List<Cartera> CarteraFiltro(String codigo);
+    List<Cartera> CarteraFiltro(Agente codigo);
     
 }

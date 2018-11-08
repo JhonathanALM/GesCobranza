@@ -31,7 +31,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Cartera.findAll", query = "SELECT c FROM Cartera c")
     , @NamedQuery(name = "Cartera.findByCodigocar", query = "SELECT c FROM Cartera c WHERE c.codigocar = :codigocar")
     , @NamedQuery(name = "Cartera.findByFechaasig", query = "SELECT c FROM Cartera c WHERE c.fechaasig = :fechaasig")
-    , @NamedQuery(name = "Cartera.findByEstadoasig", query = "SELECT c FROM Cartera c WHERE c.estadoasig = :estadoasig")})
+    , @NamedQuery(name = "Cartera.findByEstadoasig", query = "SELECT c FROM Cartera c WHERE c.estadoasig = :estadoasig")
+    ,@NamedQuery(name =  "Users.findByName", query = "SELECT c FROM Cartera c WHERE c.codigoagente= :name")})
 public class Cartera implements Serializable {
 
     private static final long serialVersionUID = 1L;

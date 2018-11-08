@@ -16,21 +16,21 @@
                     <p:layoutUnit position="west" style="min-width:500px;min-height:100px;"  minSize="40" maxSize="200">
                         <h2>
                             <h:outputLabel value="Nombre:" />
-                            <h:outputLabel for="name" value="Fernando Paredes" />
+                            <h:outputLabel for="name" value="#{clientesController.selected.codigopermora.nombrecliente}" />
                         </h2>
 
                         <h3>
                             <h:outputLabel value="Dirección:" />
-                            <h:outputLabel for="dirección" value=" Av. 10 de Agosto"/>
+                            <h:outputLabel for="dirección" value="#{clientesController.selected.codigopermora.direccioncliente}"/>
                             <br></br>
                             <h:outputLabel value="Teléfono:" />
-                            <h:outputLabel for="telefono" value=" 0978654820" />
+                            <h:outputLabel for="telefono" value="#{clientesController.selected.codigopermora.telefono1cliente}" />
                             <br></br>
                             <h:outputLabel  value="Correo:" />
-                            <h:outputLabel for="correo" value=" ferpar1@gmail.com" />
+                            <h:outputLabel for="correo" value="#{clientesController.selected.codigopermora.correocliente}" />
                             <br></br>
                             <h:outputLabel  value="Referencia:" />
-                            <h:outputLabel for="refenombre" value=" Luis Alvarado" />
+                            <h:outputLabel for="refenombre" value="#{clientesController.selected.codigopermora.nombrereferencia}" />
 
                             <br></br>
                             <h:outputLabel value="Teléfono de referencia:" />

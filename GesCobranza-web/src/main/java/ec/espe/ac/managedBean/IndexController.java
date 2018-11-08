@@ -23,19 +23,16 @@ public class IndexController implements Serializable {
     @EJB
     private AgenteFacadeLocal EJBAgente;
     private Agente agente;
-    private String actual;
-    
-    
+
     @EJB
     private CarteraFacadeLocal EJBCartera;
-    private List<Cartera> clientes; 
+    private List<Cartera> cartera = null;
     private Cartera ca = new Cartera();
-    
-    
-    
+
     @PostConstruct
     public void init() {
         agente = new Agente();
+        ca = new Cartera();
     }
 
     public Agente getAgente() {
@@ -48,7 +45,7 @@ public class IndexController implements Serializable {
 
     public String iniciarSesion() {
         String redireccion = "";
-        
+
         try {
             Agente us;
             System.out.println("Este agente va -> " + agente.getNombre());
@@ -76,25 +73,8 @@ public class IndexController implements Serializable {
 
     public String getActual() {
         Agente as = (Agente) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("agente");
-        System.out.println("Bienvenido Agente>> : "+as.getNombre());
-        return as.getNombre()+"       |";
-    }
-
-    public void setActual(String actual) {
-        
-        this.actual=actual;
-    }
-    
-
-    public List<Cartera> getClientes() {
-        Agente ar = (Agente) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("agente");
-        System.out.println("Estoy llenando los clientes para"+ar.getNombre()+" "+ar.getCodigoagente());
-        
-        return EJBCartera.CarteraFiltro(ar.getCodigoagente()+"");
-    }
-
-    public void setClientes(List<Cartera> clientes) {
-        this.clientes = clientes;
+        System.out.println("Bienvenido Agente>> : " + as.getNombre());
+        return as.getNombre() + "       |";
     }
 
     public Cartera getCa() {
@@ -104,5 +84,6 @@ public class IndexController implements Serializable {
     public void setCa(Cartera ca) {
         this.ca = ca;
     }
-}
 
+  
+}
