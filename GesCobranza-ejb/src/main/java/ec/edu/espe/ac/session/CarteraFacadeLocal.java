@@ -30,4 +30,7 @@ public interface CarteraFacadeLocal {
 
     int count();
     
+    List<Cartera> listaCarteraTodos();
+    List<Cartera> CarteraFiltro(String codigo);
+    
 }

@@ -1,8 +1,11 @@
 package ec.espe.ac.managedBean;
 
 import ec.edu.espe.ac.model.Agente;
+import ec.edu.espe.ac.model.Cartera;
 import ec.edu.espe.ac.session.AgenteFacadeLocal;
+import ec.edu.espe.ac.session.CarteraFacadeLocal;
 import java.io.Serializable;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -21,6 +24,14 @@ public class IndexController implements Serializable {
     private AgenteFacadeLocal EJBAgente;
     private Agente agente;
     private String actual;
+    
+    
+    @EJB
+    private CarteraFacadeLocal EJBCartera;
+    private List<Cartera> clientes; 
+    private Cartera ca = new Cartera();
+    
+    
     
     @PostConstruct
     public void init() {
@@ -46,8 +57,7 @@ public class IndexController implements Serializable {
                 // redireccion = "/Vista/Inicio?faces-redirect=true";
                 redireccion = "/Vista/Inicio?faces-redirect=true";
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("agente", us);
-      
-                
+                //llenarClientes();  
             } else {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Aviso", "Credenciales Incorrectas"));
                 System.out.println("Fallamos prro :( ");
@@ -66,7 +76,7 @@ public class IndexController implements Serializable {
 
     public String getActual() {
         Agente as = (Agente) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("agente");
-        System.out.println("Bienvenido Agente: "+as.getNombre());
+        System.out.println("Bienvenido Agente>> : "+as.getNombre());
         return as.getNombre()+"       |";
     }
 
@@ -74,4 +84,25 @@ public class IndexController implements Serializable {
         
         this.actual=actual;
     }
+    
+
+    public List<Cartera> getClientes() {
+        Agente ar = (Agente) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("agente");
+        System.out.println("Estoy llenando los clientes para"+ar.getNombre()+" "+ar.getCodigoagente());
+        
+        return EJBCartera.CarteraFiltro(ar.getCodigoagente()+"");
+    }
+
+    public void setClientes(List<Cartera> clientes) {
+        this.clientes = clientes;
+    }
+
+    public Cartera getCa() {
+        return ca;
+    }
+
+    public void setCa(Cartera ca) {
+        this.ca = ca;
+    }
 }
+
