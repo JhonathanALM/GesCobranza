@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../Template/plantilla.xhtml">
+
+            <ui:define name="content">
+
+                <h:form>
+                    <p:panel id="horizontal" header="Llamadas recibidas" toggleable="true" toggleOrientation="horizontal">
+                        <h:panelGrid columns="2" cellpadding="10">
+                            <p:graphicImage  onclick="true" width="50px" value="#{FacesContext.getCurrentInstance().getExternalContext()}/resources/images/phone.png"/>
+                            <h:outputText
+                                value="Aqui van las estadísticas de la cantidad de llamadas realizadas al día.." />
+                        </h:panelGrid>
+                    </p:panel>
+
+                    <p:panel id="horizontal2" header="Horizontal Toggle" toggleable="true" toggleOrientation="horizontal">
+                        <h:panelGrid columns="2" cellpadding="10">
+                            <p:graphicImage  onclick="true" width="50px" value="#{FacesContext.getCurrentInstance().getExternalContext()}/resources/images/sms.png"/>
+                            <h:outputText
+                                value="Aqui van las estadísticas de la cantidad de sms realizadas al día..." />
+                        </h:panelGrid>
+                    </p:panel>
+
+                    <p:panel id="horizontal3" header="Horizontal Toggle" toggleable="true" toggleOrientation="horizontal">
+                        <h:panelGrid columns="2" cellpadding="10">
+                            <p:graphicImage  onclick="true" width="50px" value="#{FacesContext.getCurrentInstance().getExternalContext()}/resources/images/email.png"/>
+                            <h:outputText
+                                value="Aqui van las estadísticas de la cantidad de correos enviados al día" />
+                        </h:panelGrid>
+                    </p:panel>
+
+                    <p:panel id="horizontal4" header="Horizontal Toggle" toggleable="true" toggleOrientation="horizontal">
+                        <h:panelGrid columns="2" cellpadding="10">
+                            <p:graphicImage  onclick="true" width="50px" value="#{FacesContext.getCurrentInstance().getExternalContext()}/resources/images/acuerdo.png"/>
+                            <h:outputText
+                                value="Aqui van las estadísticas de la cantidad acuerdos que se realizaron al día" />
+                        </h:panelGrid>
+                    </p:panel>
+
+                    <p:panel id="horizontal5" header="Horizontal Toggle" toggleable="true" toggleOrientation="horizontal">
+                        <h:panelGrid columns="2" cellpadding="10">
+                            <p:graphicImage  onclick="true" width="50px" value="#{FacesContext.getCurrentInstance().getExternalContext()}/resources/images/noc.png"/>
+                            <h:outputText
+                                value="Aqui van las estadísticas de la cantidad de acuerdos no resuletos, llamadas no contestadas al día" />
+                        </h:panelGrid>
+                    </p:panel>
+                </h:form>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
