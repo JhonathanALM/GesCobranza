@@ -34,5 +34,5 @@ public interface CarteraFacadeLocal {
     
     List<Cartera> listaCarteraTodos();
     List<Cartera> CarteraFiltro(Agente codigo);
-    
+    public int insertarConfigDia();
 }
