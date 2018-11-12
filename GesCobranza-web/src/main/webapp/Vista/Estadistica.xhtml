@@ -11,47 +11,32 @@
         <ui:composition template="./../Template/plantilla.xhtml">
 
             <ui:define name="content">
-
                 <h:form>
-                    <p:panel id="horizontal" header="Llamadas recibidas" toggleable="true" toggleOrientation="horizontal">
-                        <h:panelGrid columns="2" cellpadding="10">
-                            <p:graphicImage  onclick="true" width="50px" value="#{FacesContext.getCurrentInstance().getExternalContext()}/resources/images/phone.png"/>
-                            <h:outputText
-                                value="Aqui van las estadísticas de la cantidad de llamadas realizadas al día.." />
-                        </h:panelGrid>
+                    <!--<p:dataGrid var="a" value="" columns="4" layout="grid">-->
+                    <p:panel id="horizontal0"  header="Actividades realizadas" toggleable="true" toggleOrientation="horizontal">                          
+                        <p:graphicImage  onclick="true" width="50px" value="#{FacesContext.getCurrentInstance().getExternalContext()}/resources/images/acuerdo.png"/>
+                        <h:outputText value="" />
+                        <p:chart type="bar" model="#{estadistica1Controller.barModel}" style="width:500px;height:300px;  margin: 0 auto;"/>
                     </p:panel>
 
-                    <p:panel id="horizontal2" header="Horizontal Toggle" toggleable="true" toggleOrientation="horizontal">
-                        <h:panelGrid columns="2" cellpadding="10">
-                            <p:graphicImage  onclick="true" width="50px" value="#{FacesContext.getCurrentInstance().getExternalContext()}/resources/images/sms.png"/>
-                            <h:outputText
-                                value="Aqui van las estadísticas de la cantidad de sms realizadas al día..." />
-                        </h:panelGrid>
+                    <p:panel id="horizontal1"  header="Llamadas" toggleable="true" toggleOrientation="horizontal">                          
+                        <p:graphicImage  onclick="true" width="50px" value="#{FacesContext.getCurrentInstance().getExternalContext()}/resources/images/phone.png"/>
+                        <h:outputText value="" />
+                        <p:chart type="bar" model="#{estadistica1Controller.barModelLlamada}" style="width:500px;height:300px;  margin: 0 auto;"/>
                     </p:panel>
 
-                    <p:panel id="horizontal3" header="Horizontal Toggle" toggleable="true" toggleOrientation="horizontal">
-                        <h:panelGrid columns="2" cellpadding="10">
-                            <p:graphicImage  onclick="true" width="50px" value="#{FacesContext.getCurrentInstance().getExternalContext()}/resources/images/email.png"/>
-                            <h:outputText
-                                value="Aqui van las estadísticas de la cantidad de correos enviados al día" />
-                        </h:panelGrid>
+                    <p:panel id="horizontal2" header="SMS" toggleable="true" toggleOrientation="horizontal">
+                        <p:graphicImage  onclick="true" width="50px" value="#{FacesContext.getCurrentInstance().getExternalContext()}/resources/images/sms.png"/>
+                        <h:outputText value="" />
+                        <p:chart type="bar" model="#{estadistica1Controller.barModelSMS}" style="width:500px;height:300px;  margin: 0 auto;"/>
                     </p:panel>
 
-                    <p:panel id="horizontal4" header="Horizontal Toggle" toggleable="true" toggleOrientation="horizontal">
-                        <h:panelGrid columns="2" cellpadding="10">
-                            <p:graphicImage  onclick="true" width="50px" value="#{FacesContext.getCurrentInstance().getExternalContext()}/resources/images/acuerdo.png"/>
-                            <h:outputText
-                                value="Aqui van las estadísticas de la cantidad acuerdos que se realizaron al día" />
-                        </h:panelGrid>
+                    <p:panel id="horizontal3" header="Correos" toggleable="true" toggleOrientation="horizontal">
+                        <p:graphicImage  onclick="true" width="50px" value="#{FacesContext.getCurrentInstance().getExternalContext()}/resources/images/email.png"/>
+                        <h:outputText value="" />
+                        <p:chart type="bar" model="#{estadistica1Controller.barModelCorreo}" style="width:500px;height:300px;  margin: 0 auto;"/>
                     </p:panel>
 
-                    <p:panel id="horizontal5" header="Horizontal Toggle" toggleable="true" toggleOrientation="horizontal">
-                        <h:panelGrid columns="2" cellpadding="10">
-                            <p:graphicImage  onclick="true" width="50px" value="#{FacesContext.getCurrentInstance().getExternalContext()}/resources/images/noc.png"/>
-                            <h:outputText
-                                value="Aqui van las estadísticas de la cantidad de acuerdos no resuletos, llamadas no contestadas al día" />
-                        </h:panelGrid>
-                    </p:panel>
                 </h:form>
 
             </ui:define>
