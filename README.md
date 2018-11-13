@@ -1,4 +1,4 @@
-#Universidad de las Fuerzas Armadas - ESPE#
+#Universidad de las Fuerzas Armadas - ESPE
 ## Arquitectura de Software
 ## Proyecto I Parcial
 ## Generación - Archivo de Alimentación Modulo de Cobranzas
