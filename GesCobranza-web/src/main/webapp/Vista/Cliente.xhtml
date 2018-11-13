@@ -12,8 +12,8 @@
 
             <ui:define name="content">
 
-                <p:layout style="min-width:400px;min-height:300px;">
-                    <p:layoutUnit position="west" style="min-width:500px;min-height:100px;"  minSize="40" maxSize="200">
+                <p:layout style="min-width:300px;min-height:300px;">
+                    <p:layoutUnit position="west" style="min-width:700px;min-height:100px;"  minSize="40" maxSize="200">
                         <h2>
                             <h:outputLabel value="Nombre:" />
                             <h:outputLabel for="name" value="#{clientesController.selected.codigopermora.nombrecliente}" />
@@ -42,71 +42,105 @@
 
 
                         </h3>
+                        <p:dataTable var="clienteesp" value="">
+                            <p:column headerText="Entidad">
+                                <h:outputText value="#{clientesController.selected.codigopermora.instfinanciera}" />
+                            </p:column>
+
+                            <p:column headerText="Tipo">
+                                <h:outputText value="#{clientesController.selected.codigopermora.nombreproducto}" />
+                            </p:column>
+
+                            <p:column headerText="Numero Cuotas Vencidas">
+                                <h:outputText value="#{clientesController.selected.codigopermora.numerocuotasvencidas}" />
+                            </p:column>
+
+                            <p:column headerText="Dias De Mora">
+                                <h:outputText value="#{clientesController.selected.codigopermora.diasmora}" />
+                            </p:column>
+                            <p:column headerText="Valor de cuota c/u">
+                                <h:outputText value="#{clientesController.selected.codigopermora.valorcuota}" />
+                            </p:column>
+                            <p:column headerText="Total a pagar">
+                                <h:outputText value="#{clientesController.selected.codigopermora.montototal}" />
+                            </p:column>
+                        </p:dataTable>
                     </p:layoutUnit>
 
                     <p:layoutUnit position="center">
-                        <p:commandLink id="email" value="Email">
-                        </p:commandLink>
-                        <p:graphicImage  onclick="true" width="50px" value="#{FacesContext.getCurrentInstance().getExternalContext()}/resources/images/email.png"/>
+                        <h:form>
+                            <h:panelGrid columns="2" style="margin-bottom:20px" cellpadding="5">
 
-                        <br></br>
-                        <br></br>
-                        <p:commandLink id="llamar" value="Llamar" hreflang="">
-                        </p:commandLink>
-                        <p:graphicImage  onclick="true" width="50px" value="#{FacesContext.getCurrentInstance().getExternalContext()}/resources/images/phone.png"/>
+                                <h:outputLabel value="Actividad: " />
+                                <p:selectOneMenu id="lazy" value="#{clientesController.ad.tipo}" style="width:125px">
+                                    <f:selectItem itemLabel="Select One" itemValue="" />
+                                    <f:selectItems value="#{clientesController.options}" />
+                                </p:selectOneMenu>
 
-                        <br></br>
-                        <br></br>
-                        <p:commandLink id="sms" value="SMS" >
-                        </p:commandLink>
-                        <p:graphicImage  onclick="true" width="50px" value="#{FacesContext.getCurrentInstance().getExternalContext()}/resources/images/sms.png"/>
+                                <h:outputLabel value="Resultado " />
+                                <h:inputText value="#{clientesController.ad.detalle}"/>
+                                <h:outputLabel value="Etiqueta " />
+                                <h:inputText  value="#{clientesController.ad.etiqueta}"/>
+                                <h:outputLabel value="Etiqueta " />
+                                <h:inputText value="#{clientesController.ad.estado}"/>
+                                <h:outputLabel value="Otro " />
+                                <h:inputText value="#{clientesController.ad.otro}"/>
+                                <h:outputLabel value="Fecha Tentativa " />
+                                <p:calendar id="button" value="#{clientesController.ad.fechatentativa}" showOn="button" />
+                            </h:panelGrid>
+                            <p:commandButton value="Registrar" action="#{clientesController.creando()}" icon="pi pi-check" />
+
+
+                        </h:form>
+                        <h3>Historial de Gestiones</h3>
+
+                        <p:dataTable var="act" value="#{actividadController.items2}">
+                            <p:column headerText="Actividades">
+                                <h:outputText value="#{act.tipo}" />
+                            </p:column>
+
+                            <p:column headerText="Resultados">
+                                <h:outputText value="#{act.etiqueta}" />
+                            </p:column>
+                        </p:dataTable>
+
 
                     </p:layoutUnit>
                 </p:layout>
 
                 <br></br>
                 <br></br>
-
-                <p:dataTable var="clienteesp" value="">
-                    <p:column headerText="Cuenta">
-                        <h:outputText value="" />
-                    </p:column>
-
-                    <p:column headerText="Tipo">
-                        <h:outputText value="" />
-                    </p:column>
-
-                    <p:column headerText="Fecha de vencimiento">
-                        <h:outputText value="" />
-                    </p:column>
-
-                    <p:column headerText="Cuotas vencidas">
-                        <h:outputText value="" />
-                    </p:column>
-                    <p:column headerText="Valor de cuota c/u">
-                        <h:outputText value="" />
-                    </p:column>
-                    <p:column headerText="Total a pagar">
-                        <h:outputText value="" />
-                    </p:column>
-                </p:dataTable>
-
                 <br></br>
                 <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
 
-                <h3>Historial de Gestiones</h3>
 
-                <p:dataTable var="histgest" value="">
-                    <p:column headerText="Actividades">
-                        <h:outputText value="" />
-                    </p:column>
-
-                    <p:column headerText="Resultados">
-                        <h:outputText value="" />
-                    </p:column>
-                </p:dataTable>
-
-
+                <br></br>
+                <br></br>               
 
             </ui:define>
 

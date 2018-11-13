@@ -28,11 +28,14 @@ public class IndexController implements Serializable {
     private CarteraFacadeLocal EJBCartera;
     private List<Cartera> cartera = null;
     private Cartera ca = new Cartera();
+    private int cuantos;
+    private float dinero;
 
     @PostConstruct
     public void init() {
         agente = new Agente();
         ca = new Cartera();
+        contar();
     }
 
     public Agente getAgente() {
@@ -76,6 +79,14 @@ public class IndexController implements Serializable {
         System.out.println("Bienvenido Agente>> : " + as.getNombre());
         return as.getNombre() + "       |";
     }
+    
+    public void contar(){
+        Agente ar = (Agente) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("agente");
+        
+        
+        cuantos=EJBCartera.CarteraFiltro(ar).size();
+        System.out.println("Se t agregaran "+cuantos);
+    }
 
     public Cartera getCa() {
         return ca;
@@ -85,5 +96,20 @@ public class IndexController implements Serializable {
         this.ca = ca;
     }
 
-  
+    public int getCuantos() {
+        return cuantos;
+    }
+
+    public void setCuantos(int cuantos) {
+        this.cuantos = cuantos;
+    }
+
+    public float getDinero() {
+        return dinero;
+    }
+
+    public void setDinero(float dinero) {
+        this.dinero = dinero;
+    }
+
 }

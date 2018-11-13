@@ -60,6 +60,7 @@ public class cargarDatos implements Serializable {
         }
         System.out.println("Dia " + cont);
         cont++;
+        //insertarConfigDia();
         distribuir();
         return "index";
     }
@@ -109,7 +110,7 @@ public class cargarDatos implements Serializable {
     }
 
     public void distribuir() {
-        List<Agente> aa = this.EJBAgente.listaAgenteTodos();
+        /*List<Agente> aa = this.EJBAgente.listaAgenteTodos();
         List<Permora> pp = this.EJBPermora.listaPermoraTodos();
         Random r = new Random();
         for (int i = 0; i < EJBPermora.listaPermoraTodos().size(); i++) {
@@ -119,8 +120,10 @@ public class cargarDatos implements Serializable {
             ca.setFechaasig(new java.sql.Date(new java.util.Date().getTime()));
             ca.setEstadoasig(BigInteger.valueOf(1));
             this.EJBCartera.create(ca);
-        }
+        }*/
+        System.out.println("Distribuyendo...");
+        EJBCartera.insertarConfigDia();
 
     }
-
+    
 }

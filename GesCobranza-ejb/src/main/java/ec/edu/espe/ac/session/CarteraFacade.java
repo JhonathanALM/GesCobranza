@@ -87,6 +87,7 @@ public class CarteraFacade extends AbstractFacade<Cartera> implements CarteraFac
     public int insertarConfigDia() {
         //EntityManagerFactory factory = Persistence.createEntityManagerFactory("ec.edu.espe.ac_GesCobranza-ejb_ejb_1PU");
         //EntityManager em1 = factory.createEntityManager();
+        System.out.println("entre a insertarConfigDia");
         List<Agente> agentesTodos = agenteFacade.listaAgenteTodos();
         List<Permora> carteraTodos = permoraFacade.listaPermoraTodos();
         Cartera c1 = new Cartera();
@@ -102,12 +103,15 @@ public class CarteraFacade extends AbstractFacade<Cartera> implements CarteraFac
                 for (Agente opcion : agentesTodos) {
                     if (opcion.getTipo().equals("novato")) {
                         usersNov.add(opcion);
+                        System.out.println("Se añadadio a "+opcion.getNombre()+" como novato");
                     }
                     if (opcion.getTipo().equals("medio")) {
                         usersMed.add(opcion);
+                        System.out.println("Se añadadio a "+opcion.getNombre()+" como medio");
                     }
                     if (opcion.getTipo().equals("experto")) {
                         usersExp.add(opcion);
+                        System.out.println("Se añadadio a "+opcion.getNombre()+" como experto");
                     }
                 }
             }
@@ -120,29 +124,38 @@ public class CarteraFacade extends AbstractFacade<Cartera> implements CarteraFac
                     if (opcion.getNombreproducto().equals("CC") || opcion.getNombreproducto().equals("vehicular")) {
                         if (opcion.getMonto().intValue() < 20000 && opcion.getDiasmora().intValue() < 90) {
                             carNov.add(opcion);
+                            System.out.println("cc-vh");
                         }
                         if (opcion.getMonto().intValue() < 20000 && opcion.getDiasmora().intValue() >= 90) {
                             carMed.add(opcion);
+                            System.out.println("cc-vh>90");
+                            
                         }
                         if (opcion.getMonto().intValue() >= 20000 && opcion.getDiasmora().intValue() < 90) {
                             carMed.add(opcion);
+                            System.out.println("cc-vh<90");
                         }
                         if (opcion.getMonto().intValue() >= 20000 && opcion.getDiasmora().intValue() >= 90) {
                             carExp.add(opcion);
+                            System.out.println("cc-vh>90>200");
                         }
                     }
                     if (opcion.getNombreproducto().equals("hipotecario") || opcion.getNombreproducto().equals("comercial")) {
                         if (opcion.getMonto().intValue() < 30000 && opcion.getDiasmora().intValue() < 90) {
                             carNov.add(opcion);
+                            System.out.println("hi-com1");
                         }
                         if (opcion.getMonto().intValue() < 30000 && opcion.getDiasmora().intValue() >= 90) {
                             carMed.add(opcion);
+                            System.out.println("hi-com1");
                         }
                         if (opcion.getMonto().intValue() >= 30000 && opcion.getDiasmora().intValue() < 90) {
                             carMed.add(opcion);
+                            System.out.println("hi-com1");
                         }
                         if (opcion.getMonto().intValue() >= 30000 && opcion.getDiasmora().intValue() >= 90) {
                             carExp.add(opcion);
+                            System.out.println("hi-com1");
                         }
                     }
                 }
@@ -254,14 +267,25 @@ public class CarteraFacade extends AbstractFacade<Cartera> implements CarteraFac
 
     public int insertaCartera(Agente agente, Permora permora) {
         Cartera c1 = new Cartera();
+        int i=0;
+        System.out.println("insertando en cartera..."+ agente.getNombre()+" -  "+permora.getNombrecliente());
         try {
+            c1.setCodigocar(BigDecimal.valueOf(Long.valueOf(i)));
             c1.setCodigoagente(agente);
             c1.setCodigopermora(permora);
-            c1.setEstadoasig(BigInteger.ZERO);
-            c1.setCodigocar(BigDecimal.ZERO);
-            em.persist(c1);
+            c1.setFechaasig(new java.sql.Date(new java.util.Date().getTime()));
+            c1.setEstadoasig(BigInteger.valueOf(1));
+            try{
+                em.persist(c1);
+                //this.create(c1);
+                System.out.println("Se persitio4?");
+            }catch(Exception e){
+                System.out.println("Un error al persistir");
+            }
+            //this.create(c1);
             return 1;
         } catch (Exception e) {
+            System.out.println("ex:" + e);
             return 0;
         }
     }

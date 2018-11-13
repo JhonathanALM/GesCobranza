@@ -6,6 +6,7 @@
 package ec.edu.espe.ac.session;
 
 import ec.edu.espe.ac.model.Actividad;
+import ec.edu.espe.ac.model.Cartera;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -29,5 +30,7 @@ public interface ActividadFacadeLocal {
     List<Actividad> findRange(int[] range);
 
     int count();
+    
+    List<Actividad> ActividadFiltro(Cartera codigo);
     
 }

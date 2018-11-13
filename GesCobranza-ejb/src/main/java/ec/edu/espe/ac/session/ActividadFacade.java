@@ -1,9 +1,13 @@
 package ec.edu.espe.ac.session;
 
 import ec.edu.espe.ac.model.Actividad;
+import ec.edu.espe.ac.model.Agente;
+import ec.edu.espe.ac.model.Cartera;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  * @author jhona
@@ -22,5 +26,13 @@ public class ActividadFacade extends AbstractFacade<Actividad> implements Activi
     public ActividadFacade() {
         super(Actividad.class);
     }
+    @Override
+    public List<Actividad> ActividadFiltro(Cartera codigo) {
+        
+        Query qry = this.em.createQuery("SELECT obj FROM Actividad obj WHERE obj.codigocar=?1");
+        qry.setParameter(1, codigo);
+        return qry.getResultList();        
+    }
+    
 
 }
