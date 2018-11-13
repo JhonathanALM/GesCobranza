@@ -15,33 +15,25 @@
             </ui:define>
 
             <ui:define name="content">
-                <div class="ui-g-8 ui-g-nopad">
-                    <div class="ui-g-5 "><h1>Total De Ventas a Cobrar</h1> </div>
-                    <div class="ui-g-2 "><h1> </h1> </div>
-                    <div class="ui-g-5 "><p:calendar id="inline" mode="inline" /></div>    
+                
+               <h1>BIENVENIDO AGENTE       <p:outputLabel value="#{indexController.actual}"  styleClass="h1" /> </h1>
+     
+                <div class="ui-g" style="margin: 0 auto;">
+                    <div class="ui-g-8 ui-g-nopad " id="primerCuadrante">
+                        <p:dataTable var="inicio" value="Principal" id="carteraPorCobrar" style="margin-left: 100px;">
+                            <p:column headerText="Numero Personas Por Atender">
+                                <h:outputText value="#{indexController.cuantos}" />
+                            </p:column>
+
+                            <p:column headerText="Total Monto A Cobrar">
+                                <h:outputText value="#{indexController.dinero}$" />
+                            </p:column>
+                        </p:dataTable>
+                    </div>
+                    <div class="ui-g-3" id="calendario" style="margin-left: 100px;">
+                        <p:calendar id="inline" mode="inline" />
+                    </div>
                 </div>
-
-                <div class="ui-g-12 ui-md-10">
-                    <p:outputLabel value="#{indexController.cuantos}" />
-                    <p:dataTable var="inicio" value="">
-                        <p:column headerText="Descripción">
-                            <h:outputText value="" />
-                        </p:column>
-
-                        <p:column headerText="Número">
-                            <h:outputText value="" />
-                        </p:column>
-
-                        <p:column headerText="Real">
-                            <h:outputText value="" />
-                        </p:column>
-
-                        <p:column headerText="Porcentaje">
-                            <h:outputText value="" />
-                        </p:column>
-                    </p:dataTable>
-                </div>
-
 
             </ui:define>
 

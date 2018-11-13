@@ -10,21 +10,28 @@
         <ui:composition template="./../Template/plantilla.xhtml">
 
             <ui:define name="content">
-                Reporte Clientes
-                <p:dataTable var="repcliente" value="">
-                    <p:column headerText="Nombre">
+                 <h:form>
+                                      <h1>REPORTES DE CLIENTES</h1>
+                
+                <div class="ui-g-9 ui-g-nopad" style="margin: 0 auto;" id="contenedorReporte">
+                    
+                    <p:dataTable var="repcliente" value="" id="reporteClientes" style="margin-left: 400px;"> 
+                        
+                        <p:column headerText="Nombre">
+                            <h:outputText value="Juanito Casas" />
+                        </p:column>
 
-                    </p:column>
-
-                    <p:column headerText="Fecha tentativa de pago">
-                        <h:outputText value="" />
-
-                    </p:column>
-                    <p:column headerText="Valor tentativo de pago">
-                        <h:outputText value="" />
-
-                    </p:column>
-                </p:dataTable>
+                        <p:column headerText="Fecha tentativa de pago">
+                            <h:outputText value="20/11/2018" />
+                        </p:column>
+                        
+                        <p:column headerText="Valor tentativo de pago">
+                            <h:outputText value="$80" />
+                        </p:column>
+                        
+                    </p:dataTable>
+                </div>      
+                 </h:form>
             </ui:define>
 
         </ui:composition>

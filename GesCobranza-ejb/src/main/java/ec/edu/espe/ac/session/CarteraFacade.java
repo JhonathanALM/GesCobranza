@@ -81,6 +81,17 @@ public class CarteraFacade extends AbstractFacade<Cartera> implements CarteraFac
         return qry.getResultList();
         //return list;
     }
+    /*@Override
+    public double CarteraFiltro2(Agente codigo) {
+
+        Query qry = this.em.createQuery("SELECT SUM(B.montototal) FROM Cartera as A join Permora as B " +
+                                        "WHERE A.codigopermora= B.codigopermora " +
+                                        "AND A.codigoagente=?1");
+        qry.setParameter(1, codigo);
+        return qry.getResultList();
+        //return list;
+    }*/
+    
 
     
     @Override

@@ -29,7 +29,7 @@ public class IndexController implements Serializable {
     private List<Cartera> cartera = null;
     private Cartera ca = new Cartera();
     private int cuantos;
-    private float dinero;
+    private float dinero=0;
 
     @PostConstruct
     public void init() {
@@ -77,15 +77,17 @@ public class IndexController implements Serializable {
     public String getActual() {
         Agente as = (Agente) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("agente");
         System.out.println("Bienvenido Agente>> : " + as.getNombre());
-        return as.getNombre() + "       |";
+        return as.getNombre();
     }
     
     public void contar(){
-        Agente ar = (Agente) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("agente");
-        
-        
+        Agente ar = (Agente) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("agente");       
         cuantos=EJBCartera.CarteraFiltro(ar).size();
-        System.out.println("Se t agregaran "+cuantos);
+        
+        for(Cartera p : EJBCartera.CarteraFiltro(ar)){
+            this.dinero = this.dinero+ Float.parseFloat(p.getCodigopermora().getMontototal()+"");
+         }
+        System.out.println("Se t agregaran "+cuantos+"Un total de  : "+dinero+"$");
     }
 
     public Cartera getCa() {
@@ -111,5 +113,6 @@ public class IndexController implements Serializable {
     public void setDinero(float dinero) {
         this.dinero = dinero;
     }
+
 
 }

@@ -10,20 +10,25 @@
         <ui:composition template="./../Template/plantilla.xhtml">
 
             <ui:define name="content">
-                <p:dataTable var="llamadas" value="">
-                    <p:column headerText="Llamadas/Descripción">
-                    </p:column>
-
-                    <p:column headerText="Valor">
-                        <h:outputText value="5" />
-                    </p:column>
-                </p:dataTable>
+                <h:form>
+                    <h1>REPORTES DE BANCO</h1>  
                 
-                   <p:dataTable var="llamadas" value="">
-                    <p:column headerText="Valor total">
-                    </p:column>
+                <div class="ui-g-9 ui-g-nopad" style="margin: 0 auto;" id="contenedorReporte">
+                    <p:dataTable var="llamadas" value="" style="margin-left: 400px;">
+                        <p:column headerText="Llamadas/Descripción" style="text-align: center">
+                            <h:outputText value="Se llamo dos veces" />
+                        </p:column>
 
-                </p:dataTable>
+                        <p:column headerText="Valor" style="text-align: center">
+                            <h:outputText value="5" />
+                        </p:column>
+
+                        <p:column headerText="Valor total" style="text-align: center"> 
+                            <h:outputText value="5" />
+                        </p:column>
+                    </p:dataTable>
+                </div>
+                </h:form>
 
             </ui:define>
 
