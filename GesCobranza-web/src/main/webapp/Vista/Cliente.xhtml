@@ -14,34 +14,39 @@
 
                 <p:layout style="min-width:300px;min-height:300px;">
                     <p:layoutUnit position="west" style="min-width:700px;min-height:100px;"  minSize="40" maxSize="200">
+
                         <h2>
                             <h:outputLabel value="Nombre:" />
                             <h:outputLabel for="name" value="#{clientesController.selected.codigopermora.nombrecliente}" />
                         </h2>
+                        <h:outputLabel value="Dirección:" />
+                        <h:outputLabel for="dirección" value="#{clientesController.selected.codigopermora.direccioncliente}"/>
+                        <br></br>
+                        <h:outputLabel value="Teléfono:" />
+                        <h:outputLabel for="telefono" value="#{clientesController.selected.codigopermora.telefono1cliente}" />
+                        <br></br>
+                        <h:outputLabel  value="Correo:" />
+                        <h:outputLabel for="correo" value="#{clientesController.selected.codigopermora.correocliente}" />
+                        <br></br>
+                        <h:outputLabel  value="Referencia:" />
+                        <h:outputLabel for="refenombre" value="#{clientesController.selected.codigopermora.nombrereferencia}" />
+                        <br/><br/>
+                        <h:form> 
+                            <h3 style="margin-top:0">Contactos</h3>
+                            <p:menu>
+                                <p:submenu label="Numero Telefonico">
+                                    <p:menuitem value="#{clientesController.selected.codigopermora.telefono1cliente}" action=" " icon="pi pi-save" />
+                                    <p:menuitem value="#{clientesController.selected.codigopermora.telefono2cliente}" action=" "  icon="pi pi-refresh"/>
+                                </p:submenu>
+                                <p:submenu label="Numero Referencia">
+                                    <p:menuitem value="#{clientesController.selected.codigopermora.telefonoreferencia}" url="http://www.primefaces.org" icon="pi pi-home"/>
+                                </p:submenu>
+                            </p:menu>
+                        </h:form> 
 
-                        <h3>
-                            <h:outputLabel value="Dirección:" />
-                            <h:outputLabel for="dirección" value="#{clientesController.selected.codigopermora.direccioncliente}"/>
-                            <br></br>
-                            <h:outputLabel value="Teléfono:" />
-                            <h:outputLabel for="telefono" value="#{clientesController.selected.codigopermora.telefono1cliente}" />
-                            <br></br>
-                            <h:outputLabel  value="Correo:" />
-                            <h:outputLabel for="correo" value="#{clientesController.selected.codigopermora.correocliente}" />
-                            <br></br>
-                            <h:outputLabel  value="Referencia:" />
-                            <h:outputLabel for="refenombre" value="#{clientesController.selected.codigopermora.nombrereferencia}" />
-
-                            <br></br>
-                            <h:outputLabel value="Teléfono de referencia:" />
-                            <h:outputLabel for="reffono" value=" 0988546422" />
-
-                            <br></br>
-                            <h:outputLabel  value="Parentesco:" />
-                            <h:outputLabel for="parenteso" value=" Ninguno" />
-
-
-                        </h3>
+                        <p:growl id="messages" showDetail="false"/>
+                        <br/>
+                        <h3 style="margin-top:0">Resumen Estado</h3>
                         <p:dataTable var="clienteesp" value="">
                             <p:column headerText="Entidad">
                                 <h:outputText value="#{clientesController.selected.codigopermora.instfinanciera}" />
@@ -65,10 +70,12 @@
                                 <h:outputText value="#{clientesController.selected.codigopermora.montototal}" />
                             </p:column>
                         </p:dataTable>
+
                     </p:layoutUnit>
 
                     <p:layoutUnit position="center">
                         <h:form>
+                             <p:growl id="growl" life="2000" />
                             <h:panelGrid columns="2" style="margin-bottom:20px" cellpadding="5">
 
                                 <h:outputLabel value="Actividad: " />
@@ -78,33 +85,36 @@
                                 </p:selectOneMenu>
 
                                 <h:outputLabel value="Resultado " />
-                                <h:inputText value="#{clientesController.ad.detalle}"/>
-                                <h:outputLabel value="Etiqueta " />
-                                <h:inputText  value="#{clientesController.ad.etiqueta}"/>
-                                <h:outputLabel value="Etiqueta " />
-                                <h:inputText value="#{clientesController.ad.estado}"/>
-                                <h:outputLabel value="Otro " />
                                 <h:inputText value="#{clientesController.ad.otro}"/>
+                                <h:outputLabel value="Detalle " />
+                                <h:inputText  value="#{clientesController.ad.detalle}"/>
+                                <h:outputLabel value="Etiqueta " />
+                                <p:selectOneMenu  value="#{clientesController.ad.etiqueta}" style="width:125px">
+                                    <f:selectItem itemLabel="Compromiso a Pago" itemValue="Compromiso a Pago" />
+                                    <f:selectItem itemLabel="No definido" itemValue="No definido" />
+                                    <f:selectItem itemLabel="Rehusa a Pagar" itemValue="Rehusa a Pagar" />
+                                    <f:selectItem itemLabel="No Atendido" itemValue="No Atendido" />
+                                    <f:selectItem itemLabel="Enviado" itemValue="Enviado" />
+                                    <f:selectItem itemLabel="Contacto Referencia" itemValue="Contacto Referencia" />
+                                    <f:selectItem itemLabel="Otro" itemValue="Otro" />
+                                </p:selectOneMenu>
                                 <h:outputLabel value="Fecha Tentativa " />
                                 <p:calendar id="button" value="#{clientesController.ad.fechatentativa}" showOn="button" />
                             </h:panelGrid>
-                            <p:commandButton value="Registrar" action="#{clientesController.creando()}" icon="pi pi-check" />
+                             <p:commandButton value="Registrar" action="#{clientesController.creando2()}" icon="pi pi-check" update="growl" style="margin-right:20px;" styleClass="ui-priority-primary"/>
 
-
+                            <h3>Historial de Gestiones</h3>
+                            <h:panelGrid id="grid" cellpadding="5" columns="2" style="margin-bottom:10px">
+                                <p:dataTable var="act" value="#{actividadController.items2}">
+                                    <p:column headerText="Actividades">
+                                        <h:outputText value="#{act.tipo}" />
+                                    </p:column>
+                                    <p:column headerText="Resultados">
+                                        <h:outputText value="#{act.etiqueta}" />
+                                    </p:column>
+                                </p:dataTable>    
+                            </h:panelGrid>
                         </h:form>
-                        <h3>Historial de Gestiones</h3>
-
-                        <p:dataTable var="act" value="#{actividadController.items2}">
-                            <p:column headerText="Actividades">
-                                <h:outputText value="#{act.tipo}" />
-                            </p:column>
-
-                            <p:column headerText="Resultados">
-                                <h:outputText value="#{act.etiqueta}" />
-                            </p:column>
-                        </p:dataTable>
-
-
                     </p:layoutUnit>
                 </p:layout>
 

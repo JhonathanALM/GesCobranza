@@ -1,5 +1,6 @@
 package ec.espe.ac.managedBean;
 
+import static com.sun.javafx.logging.PulseLogger.addMessage;
 import ec.edu.espe.ac.model.Actividad;
 import ec.edu.espe.ac.model.Agente;
 import ec.edu.espe.ac.model.Cartera;
@@ -46,6 +47,7 @@ public class ClientesController implements Serializable {
     private List<String> options;
 
     private MenuModel model;
+    private float val;
 
     @PostConstruct
     public void init() {
@@ -84,6 +86,7 @@ public class ClientesController implements Serializable {
         if (this.selected.getEstadoasig().toString().equals("1")) {
             options.add("Correo Electronico");
             options.add("SMS");
+            
         }
         if (this.selected.getEstadoasig().toString().equals("2")) {
             options.add("Correo Electronico");
@@ -92,7 +95,7 @@ public class ClientesController implements Serializable {
         }
         if (this.selected.getEstadoasig().toString().equals("3")) {
             options.add("Llamada Telefonica");
-            options.add("Llamada Telefonica Familiar");
+            options.add("Llamada Telefonica Referencia");
             options.add("Visita Personal");
         }
 
@@ -171,12 +174,32 @@ public class ClientesController implements Serializable {
         this.options = options;
     }
 
-    public String creando() {
+    /*public void creando() {
         ad.setCodigact(BigDecimal.ONE);
         ad.setFechaatencion(new java.sql.Date(new java.util.Date().getTime()));
         ad.setCodigocar(selected);
+        if(ad.getTipo().equals("Llamada Telefonica")||ad.getTipo().equals("Llamada Telefonica Familiar")){
+            ad.setValor(BigDecimal.valueOf(Double.valueOf("5")));
+        }else{
+            ad.setValor(BigDecimal.valueOf(Double.valueOf("1")));
+        }
+        System.out.println("|>>" + ad.getDetalle());
+        addMessage("Welcome to Primefaces!!");
+        EJBActividad.create(ad);
+    }*/
+    public String creando2() {
+        ad.setCodigact(BigDecimal.ONE);
+        ad.setFechaatencion(new java.sql.Date(new java.util.Date().getTime()));
+        ad.setCodigocar(selected);
+        if(ad.getTipo().equals("Llamada Telefonica")||ad.getTipo().equals("Llamada Telefonica Familiar")){
+            ad.setValor(BigDecimal.valueOf(Double.valueOf("5")));
+        }else{
+            ad.setValor(BigDecimal.valueOf(Double.valueOf("1")));
+        }
+        ad.setEstado("ATENDIDO");
         System.out.println("|>>" + ad.getDetalle());
         EJBActividad.create(ad);
+        addMessage("Welcome to Primefaces!!");
         return "Menu Cliente";
     }
 

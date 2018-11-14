@@ -11,41 +11,44 @@
 
             <ui:define name="content">
                 <h:form>
-                   <h1> CONTENIDO DE CONFIGURACION</h1>
+                    <h1> CONTENIDO DE CONFIGURACION</h1>
+
+
+                    <div class="ui-g-10 ui-g-nopad" style="margin: 0 auto;" id="contenedorReporte"> 
+                        <table class="w3-table">
+                            <thead>
+                                <tr>
+                                    <th class = "employeeTableHeader" scope = "col">Segmento</th>
+                                    <th class = "employeeTableHeader" scope = "col">Numero de Clientes</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr class = "employeeTableOddRow">
+                                    <td><h:outputText value="Riesgo Bajo" /></td>
+                                    <td><h:outputText value="#{carteraController.cuantosA}" /></td>
+                                    
+                                </tr>
+
+                                <tr class = "employeeTableOddRow">
+                                    <td><h:outputText value="Riesgo Medio" /></td>
+                                    <td><h:outputText value="#{carteraController.cuantosB}" /></td>
+                                    
+                                </tr>
+                                <tr class = "employeeTableOddRow">
+                                    <td><h:outputText value="Riesgo Alto" /></td>
+                                    <td><h:outputText value="#{carteraController.cuantosC}" /></td>
+                                   
+                                </tr>
+                            </tbody>
+
+                        </table>
+                    </div>
                     <div>
                         <p:commandButton icon="ui-icon-key" value="Cerrar el Dia" action="#{cargarDatos.add()}" />
                         <br/><br/>
                     </div>
-                    
-                    <div class="ui-g-10 ui-g-nopad" style="margin: 0 auto;" id="contenedorReporte"> 
-                        <p:dataTable var="cliente" value="" style="margin-left: 250px;">
-                            <p:column headerText="Segmento">
-                                <!--     <h:outputText value="1. Clientes con deuda vencida en 1 - 16 días" />
-                                     <h:outputText value="2. Clientes con deuda vencida en 17 - 31 días" />
-                                     <h:outputText value="3. Clientes con deuda vencida en 32 - 46 días" />
-                                     <h:outputText value="4. Clientes con deuda vencida en 47 - 61 días" />
-                                     <h:outputText value="5. Clientes con deuda vencida por más de 61 días" />
-                                
-                                Debe ir en las filas eso hay q cargar
-                                -->
-                            </p:column>
-                            <p:column headerText="N Clientes">
-                                <h:outputText value="5" />
-                            </p:column>
 
-                            <p:column headerText="Facturas">
-                                <h:outputText value="6" />
-                            </p:column>
-
-                            <p:column headerText="Monto">
-                                <h:outputText value="" />
-                            </p:column>
-                            <p:column headerText="Configurar">
-                                <h:outputText value="" />
-                            </p:column>
-                        </p:dataTable>
-                    </div>
-                    
                 </h:form>
             </ui:define>
         </ui:composition>
