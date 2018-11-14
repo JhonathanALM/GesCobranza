@@ -27,13 +27,22 @@ public class ReporteBancoController implements Serializable {
      * Creates a new instance of ReporteBancoController
      */
     public ReporteBancoController() {
+        try {
+            reporte = EJBActividad.reporteBanco();
+        } catch (Exception e) {
+            System.out.println("Error getReporte");
+        }
     }
     
     
     private List<Object[]> reporte;
 
     public List<Object[]> getReporte() {
-        reporte= EJBActividad.reporteBanco();
+        try {
+            reporte = EJBActividad.reporteBanco();
+        } catch (Exception e) {
+            System.out.println("Error getReporte");
+        }
         return reporte;
     }
 

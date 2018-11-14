@@ -44,11 +44,11 @@ public class PermoraFacade extends AbstractFacade<Permora> implements PermoraFac
         return list;
     }
 
-    public List<Permora> listaPermoraPorFecha(Date fechaCarga) {
+    public List<Permora> listaPermoraPorFecha() {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("ec.edu.espe.ac_GesCobranza-ejb_ejb_1PU");
         EntityManager em1 = factory.createEntityManager();
         //pkg_jpa.Autor c1=new pkg_jpa.Autor();
-        Query query = em1.createNamedQuery("Permora.findByFechacarga").setParameter("fechacarga", fechaCarga);
+        Query query = em1.createNamedQuery("Permora.findAll");
         List<Permora> list;
         try {
             list = query.getResultList();

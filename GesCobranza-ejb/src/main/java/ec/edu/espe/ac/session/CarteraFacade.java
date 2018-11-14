@@ -101,6 +101,7 @@ public class CarteraFacade extends AbstractFacade<Cartera> implements CarteraFac
         System.out.println("entre a insertarConfigDia");
         List<Agente> agentesTodos = agenteFacade.listaAgenteTodos();
         List<Permora> carteraTodos = permoraFacade.listaPermoraTodos();
+        //List<Permora> carteraTodos = permoraFacade.listaPermoraPorFecha();
         Cartera c1 = new Cartera();
 
         List<Agente> usersNov = new ArrayList<Agente>();
@@ -133,38 +134,38 @@ public class CarteraFacade extends AbstractFacade<Cartera> implements CarteraFac
             if (carteraTodos != null) {
                 for (Permora opcion : carteraTodos) {
                     if (opcion.getNombreproducto().equals("CC") || opcion.getNombreproducto().equals("vehicular")) {
-                        if (opcion.getMonto().intValue() < 20000 && opcion.getDiasmora().intValue() < 90) {
+                        if (opcion.getMontototal().intValue() < 20000 && opcion.getDiasmora().intValue() < 90) {
                             carNov.add(opcion);
                             System.out.println("cc-vh");
                         }
-                        if (opcion.getMonto().intValue() < 20000 && opcion.getDiasmora().intValue() >= 90) {
+                        if (opcion.getMontototal().intValue() < 20000 && opcion.getDiasmora().intValue() >= 90) {
                             carMed.add(opcion);
                             System.out.println("cc-vh>90");
                             
                         }
-                        if (opcion.getMonto().intValue() >= 20000 && opcion.getDiasmora().intValue() < 90) {
+                        if (opcion.getMontototal().intValue() >= 20000 && opcion.getDiasmora().intValue() < 90) {
                             carMed.add(opcion);
                             System.out.println("cc-vh<90");
                         }
-                        if (opcion.getMonto().intValue() >= 20000 && opcion.getDiasmora().intValue() >= 90) {
+                        if (opcion.getMontototal().intValue() >= 20000 && opcion.getDiasmora().intValue() >= 90) {
                             carExp.add(opcion);
                             System.out.println("cc-vh>90>200");
                         }
                     }
                     if (opcion.getNombreproducto().equals("hipotecario") || opcion.getNombreproducto().equals("comercial")) {
-                        if (opcion.getMonto().intValue() < 30000 && opcion.getDiasmora().intValue() < 90) {
+                        if (opcion.getMontototal().intValue() < 30000 && opcion.getDiasmora().intValue() < 90) {
                             carNov.add(opcion);
                             System.out.println("hi-com1");
                         }
-                        if (opcion.getMonto().intValue() < 30000 && opcion.getDiasmora().intValue() >= 90) {
+                        if (opcion.getMontototal().intValue() < 30000 && opcion.getDiasmora().intValue() >= 90) {
                             carMed.add(opcion);
                             System.out.println("hi-com1");
                         }
-                        if (opcion.getMonto().intValue() >= 30000 && opcion.getDiasmora().intValue() < 90) {
+                        if (opcion.getMontototal().intValue() >= 30000 && opcion.getDiasmora().intValue() < 90) {
                             carMed.add(opcion);
                             System.out.println("hi-com1");
                         }
-                        if (opcion.getMonto().intValue() >= 30000 && opcion.getDiasmora().intValue() >= 90) {
+                        if (opcion.getMontototal().intValue() >= 30000 && opcion.getDiasmora().intValue() >= 90) {
                             carExp.add(opcion);
                             System.out.println("hi-com1");
                         }
@@ -172,9 +173,9 @@ public class CarteraFacade extends AbstractFacade<Cartera> implements CarteraFac
                 }
             }
             if (carteraTodos != null && agentesTodos != null) {
-                distribucion(usersNov, carNov);
-                distribucion(usersMed, carMed);
-                distribucion(usersExp, carExp);
+                distribucion(usersNov, carNov,1);
+                distribucion(usersMed, carMed,2);
+                distribucion(usersExp, carExp,3);
                 /*
                 
                 for (Agente opcionUser : agentesTodos) {
@@ -209,7 +210,7 @@ public class CarteraFacade extends AbstractFacade<Cartera> implements CarteraFac
         return res;
     }
 
-    public int distribucion(List<Agente> listAgente, List<Permora> listPermora) {
+    public int distribucion(List<Agente> listAgente, List<Permora> listPermora, int EstadoAsig) {
         List<Permora> originalList = listPermora;
         int car = listPermora.size();
         int usu = listAgente.size();
@@ -243,7 +244,7 @@ public class CarteraFacade extends AbstractFacade<Cartera> implements CarteraFac
                 fin = Math.min(i + partitionSize, originalList.size());
 
                 for (Permora perAct : auxList) {
-                    insertaCartera(listAgente.get(agenteAct), perAct);
+                    insertaCartera(listAgente.get(agenteAct), perAct,EstadoAsig);
                 }
                 agenteAct++;
             }
@@ -257,7 +258,7 @@ public class CarteraFacade extends AbstractFacade<Cartera> implements CarteraFac
                     res--;
                     i++;
                     for (Permora perAct : auxList) {
-                        insertaCartera(listAgente.get(agenteAct), perAct);
+                        insertaCartera(listAgente.get(agenteAct), perAct,EstadoAsig);
                     }
                     agenteAct++;
                 } else {
@@ -265,7 +266,7 @@ public class CarteraFacade extends AbstractFacade<Cartera> implements CarteraFac
                             Math.min(i + partitionSize, originalList.size()));
                     fin = Math.min(i + partitionSize, originalList.size());
                     for (Permora perAct : auxList) {
-                        insertaCartera(listAgente.get(agenteAct), perAct);
+                        insertaCartera(listAgente.get(agenteAct), perAct,EstadoAsig);
                     }
                     agenteAct++;
                 }
@@ -276,7 +277,7 @@ public class CarteraFacade extends AbstractFacade<Cartera> implements CarteraFac
         return 0;
     }
 
-    public int insertaCartera(Agente agente, Permora permora) {
+    public int insertaCartera(Agente agente, Permora permora,int EstadoAsig) {
         Cartera c1 = new Cartera();
         int i=0;
         System.out.println("insertando en cartera..."+ agente.getNombre()+" -  "+permora.getNombrecliente());
@@ -285,7 +286,7 @@ public class CarteraFacade extends AbstractFacade<Cartera> implements CarteraFac
             c1.setCodigoagente(agente);
             c1.setCodigopermora(permora);
             c1.setFechaasig(new java.sql.Date(new java.util.Date().getTime()));
-            c1.setEstadoasig(BigInteger.valueOf(1));
+            c1.setEstadoasig(BigInteger.valueOf(EstadoAsig));
             try{
                 em.persist(c1);
                 //this.create(c1);

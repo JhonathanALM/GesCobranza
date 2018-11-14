@@ -10,28 +10,50 @@
         <ui:composition template="./../Template/plantilla.xhtml">
 
             <ui:define name="content">
-                 <h:form>
-                                      <h1>REPORTES DE CLIENTES</h1>
-                
-                <div class="ui-g-9 ui-g-nopad" style="margin: 0 auto;" id="contenedorReporte">
-                    
-                    <p:dataTable var="repcliente" value="" id="reporteClientes" style="margin-left: 400px;"> 
-                        
-                        <p:column headerText="Nombre">
-                            <h:outputText value="Juanito Casas" />
-                        </p:column>
+                <h:form >
+                    <h1>REPORTES DE CLIENTES POR RESPUESTA</h1>
+                    <br/>
+                    <br/>
+                        <p:dataTable id="table1" var="rep1" value="#{reporteClientesController.reporteUsuarioEtiqueta}" style="">
+                            <p:column headerText="Fecha Reporte" style="text-align: center">
+                                <h:outputText value="#{rep[0]}" />
+                            </p:column>
 
-                        <p:column headerText="Fecha tentativa de pago">
-                            <h:outputText value="20/11/2018" />
-                        </p:column>
-                        
-                        <p:column headerText="Valor tentativo de pago">
-                            <h:outputText value="$80" />
-                        </p:column>
-                        
-                    </p:dataTable>
-                </div>      
-                 </h:form>
+                            <p:column headerText="Tipo de Respuesta" style="text-align: center">
+                                <h:outputText value="#{rep[1]}" />
+                            </p:column>
+
+                            <p:column headerText="Cantidad" style="text-align: center"> 
+                                <h:outputText value="#{rep[2]}" />
+                            </p:column>
+                            <p:column headerText="Valor total" style="text-align: center"> 
+                                <h:outputText value="#{rep[3]}" />
+                            </p:column>
+                        </p:dataTable>
+                </h:form>
+                <br/>
+                <br/>
+                <h:form>     
+                    <br/>
+                    <h1>REPORTES DE CLIENTES POR TIPO DE ACCION</h1>
+
+                        <p:dataTable var="rep2" value="#{reporteClientesController.reporteUsuarioTipo}" style="">
+                            <p:column headerText="Fecha Reporte" style="text-align: center">
+                                <h:outputText value="#{rep[0]}" />
+                            </p:column>
+
+                            <p:column headerText="Tipo de Acción" style="text-align: center">
+                                <h:outputText value="#{rep[1]}" />
+                            </p:column>
+
+                            <p:column headerText="Cantidad de veces Realizada" style="text-align: center"> 
+                                <h:outputText value="#{rep[2]}" />
+                            </p:column>
+                            <p:column headerText="Valor total a cobrar" style="text-align: center"> 
+                                <h:outputText value="#{rep[3]}" />
+                            </p:column>
+                        </p:dataTable>
+                </h:form>
             </ui:define>
 
         </ui:composition>
