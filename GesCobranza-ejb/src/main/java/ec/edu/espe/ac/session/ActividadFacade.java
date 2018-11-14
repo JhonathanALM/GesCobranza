@@ -40,7 +40,7 @@ public class ActividadFacade extends AbstractFacade<Actividad> implements Activi
     public List<Object[]> reporteBanco(){
         //List<ReporteBanco> reporte = new ArrayList<ReporteBanco>();
         System.out.println("pre sql");
-        String sql= "select sum(sq2.valor) as total, sq2.INSTFINANCIERA as institucion, count(sq2.codigopermora) as numeroCasos from (select sq1.valor,permo.INSTFINANCIERA, sq1.codigopermora from PERMORA permo,(select acti.VALOR, acti.FECHAATENCION, acti.FECHATENTATIVA, acti.DETALLE, acti.TIPO, acti.OTRO, cart.CODIGOCAR, cart.CODIGOPERMORA as codigopermora from ACTIVIDAD acti, CARTERA cart where acti.CODIGOCAR=cart.CODIGOCAR and acti.FECHAATENCION in (select fp.FECHA from FECHAPROCESO fp)) sq1 where sq1.codigopermora=permo.CODIGOPERMORA) sq2 GROUP BY sq2.instfinanciera";
+        String sql= "select sum(sq2.valor) as total, sq2.INSTFINANCIERA as institucion, count(sq2.codigopermora) as numeroCasos from (select sq1.valor,permo.INSTFINANCIERA, sq1.codigopermora from PERMORA permo,(select acti.VALOR, acti.FECHAATENCION, acti.FECHATENTATIVA, acti.DETALLE, acti.TIPO, acti.OTRO, cart.CODIGOCAR, cart.CODIGOPERMORA as codigopermora from ACTIVIDAD acti, CARTERA cart where acti.CODIGOCAR=cart.CODIGOCAR and TRUNC(acti.FECHAATENCION) in TRUNC((select fp.FECHA from FECHAPROCESO fp))) sq1 where sq1.codigopermora=permo.CODIGOPERMORA) sq2 GROUP BY sq2.instfinanciera";
         Query q = em.createNativeQuery(sql);
         System.out.println("post sql");
         //reporte = q.getResultList();
@@ -80,7 +80,7 @@ public class ActividadFacade extends AbstractFacade<Actividad> implements Activi
     public List<Object[]> reporteUsuarioTipo(){
         //List<ReporteBanco> reporte = new ArrayList<ReporteBanco>();
         System.out.println("pre sql");
-        String sql= "select acti.FECHAATENCION, acti.TIPO ,count(acti.ETIQUETA), Sum(acti.VALOR) from ACTIVIDAD acti where acti.FECHAATENCION in (select fp.FECHA from FECHAPROCESO fp) Group by acti.TIPO,acti.FECHAATENCION";
+        String sql= "select acti.FECHAATENCION, acti.TIPO ,count(acti.ETIQUETA), Sum(acti.VALOR) from ACTIVIDAD acti Group by acti.TIPO,acti.FECHAATENCION";
         Query q = em.createNativeQuery(sql);
         System.out.println("post sql");
         //reporte = q.getResultList();

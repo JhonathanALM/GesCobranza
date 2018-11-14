@@ -14,7 +14,7 @@
                     <h1>REPORTES DE CLIENTES POR RESPUESTA</h1>
                     <br/>
                     <br/>
-                        <p:dataTable id="table1" var="rep1" value="#{reporteClientesController.reporteUsuarioEtiqueta}" style="">
+                        <p:dataTable id="table1" var="rep" value="#{reporteClientesController.reporteUsuarioEtiqueta}" style="">
                             <p:column headerText="Fecha Reporte" style="text-align: center">
                                 <h:outputText value="#{rep[0]}" />
                             </p:column>
@@ -39,18 +39,18 @@
 
                         <p:dataTable var="rep2" value="#{reporteClientesController.reporteUsuarioTipo}" style="">
                             <p:column headerText="Fecha Reporte" style="text-align: center">
-                                <h:outputText value="#{rep[0]}" />
+                                <h:outputText value="#{rep2[0]}" />
                             </p:column>
 
                             <p:column headerText="Tipo de Acción" style="text-align: center">
-                                <h:outputText value="#{rep[1]}" />
+                                <h:outputText value="#{rep2[1]}" />
                             </p:column>
 
                             <p:column headerText="Cantidad de veces Realizada" style="text-align: center"> 
-                                <h:outputText value="#{rep[2]}" />
+                                <h:outputText value="#{rep2[2]}" />
                             </p:column>
                             <p:column headerText="Valor total a cobrar" style="text-align: center"> 
-                                <h:outputText value="#{rep[3]}" />
+                                <h:outputText value="#{rep2[3]}" />
                             </p:column>
                         </p:dataTable>
                 </h:form>

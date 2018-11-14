@@ -193,6 +193,8 @@ public class ClientesController implements Serializable {
         ad.setCodigocar(selected);
         if(ad.getTipo().equals("Llamada Telefonica")||ad.getTipo().equals("Llamada Telefonica Familiar")){
             ad.setValor(BigDecimal.valueOf(Double.valueOf("5")));
+        }else if(ad.getTipo().equals("Visita Personal")){
+            ad.setValor(BigDecimal.valueOf(Double.valueOf("50")));
         }else{
             ad.setValor(BigDecimal.valueOf(Double.valueOf("1")));
         }
