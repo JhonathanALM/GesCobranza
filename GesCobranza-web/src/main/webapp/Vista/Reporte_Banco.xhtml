@@ -14,17 +14,17 @@
                     <h1>REPORTES DE BANCO</h1>  
                 
                 <div class="ui-g-9 ui-g-nopad" style="margin: 0 auto;" id="contenedorReporte">
-                    <p:dataTable var="llamadas" value="" style="margin-left: 400px;">
-                        <p:column headerText="Llamadas/Descripción" style="text-align: center">
-                            <h:outputText value="Se llamo dos veces" />
+                    <p:dataTable var="rep" value="#{reporteBancoController.reporte}" style="margin-left: 400px;">
+                        <p:column headerText="NombreInstitucion" style="text-align: center">
+                            <h:outputText value="#{rep[1]}" />
                         </p:column>
 
-                        <p:column headerText="Valor" style="text-align: center">
-                            <h:outputText value="5" />
+                        <p:column headerText="Valor a pagar" style="text-align: center">
+                            <h:outputText value="#{rep[0]}" />
                         </p:column>
 
-                        <p:column headerText="Valor total" style="text-align: center"> 
-                            <h:outputText value="5" />
+                        <p:column headerText="Acciones Realizadas" style="text-align: center"> 
+                            <h:outputText value="#{rep[2]}" />
                         </p:column>
                     </p:dataTable>
                 </div>

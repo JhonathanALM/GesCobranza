@@ -7,6 +7,7 @@ package ec.edu.espe.ac.session;
 
 import ec.edu.espe.ac.model.Actividad;
 import ec.edu.espe.ac.model.Cartera;
+import ec.edu.espe.ac.model.ReporteBanco;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -32,5 +33,6 @@ public interface ActividadFacadeLocal {
     int count();
     
     List<Actividad> ActividadFiltro(Cartera codigo);
+    List<Object[]> reporteBanco();
     
 }
