@@ -30,5 +30,6 @@ public interface PermoraFacadeLocal {
     int count();
     
     List<Permora> listaPermoraTodos();
+    List<Permora> listaPermoraPorFecha();
     
 }

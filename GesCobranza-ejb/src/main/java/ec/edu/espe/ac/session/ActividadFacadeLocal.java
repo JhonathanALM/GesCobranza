@@ -34,5 +34,7 @@ public interface ActividadFacadeLocal {
     
     List<Actividad> ActividadFiltro(Cartera codigo);
     List<Object[]> reporteBanco();
+    List<Object[]> reporteUsuarioEtiqueta();
+    List<Object[]> reporteUsuarioTipo();
     
 }
