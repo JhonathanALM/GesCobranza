@@ -139,9 +139,10 @@ public class Estadistica1Controller implements Serializable {
     }
 
     public BarChartModel initBarModel() {
-        Query qll = em1.createNativeQuery("SELECT ESTADO FROM ACTIVIDAD WHERE ESTADO='" + "atendido" + "' AND TIPO='" + "llamada" + "'");
-        Query qcr = em1.createNativeQuery("SELECT ESTADO FROM ACTIVIDAD WHERE ESTADO='" + "atendido" + "' AND TIPO='" + "correo" + "'");
-        Query qsms = em1.createNativeQuery("SELECT ESTADO FROM ACTIVIDAD WHERE ESTADO='" + "atendido" + "' AND TIPO='" + "sms" + "'");
+        Query qll = em1.createNativeQuery("SELECT ESTADO FROM ACTIVIDAD WHERE ESTADO='" + "ATENDIDO" + "' AND TIPO='" + "Llamada Telefonica" + "'");
+        Query qcr = em1.createNativeQuery("SELECT ESTADO FROM ACTIVIDAD WHERE ESTADO='" + "ATENDIDO" + "' AND TIPO='" + "Correo Electronico" + "'");
+        Query qsms = em1.createNativeQuery("SELECT ESTADO FROM ACTIVIDAD WHERE ESTADO='" + "ATENDIDO" + "' AND TIPO='" + "SMS" + "'");
+               
         BarChartModel model = new BarChartModel();
         ChartSeries llm = new ChartSeries();
         llm.setLabel("Llamadas");
@@ -160,8 +161,8 @@ public class Estadistica1Controller implements Serializable {
     }
 
     public BarChartModel initBarModelLlamadas() {
-        Query q = em1.createNativeQuery("SELECT ESTADO FROM ACTIVIDAD WHERE ESTADO='" + "atendido" + "' AND TIPO='" + "llamada" + "'");
-        Query q1 = em1.createNativeQuery("SELECT ESTADO FROM ACTIVIDAD WHERE ESTADO='" + "atendido" + "' AND TIPO='" + "llamada" + "'");
+        Query q = em1.createNativeQuery("SELECT ESTADO FROM ACTIVIDAD WHERE ESTADO='" + "ATENDIDO" + "' AND TIPO='" + "Llamada Telefonica" + "'");
+        Query q1 = em1.createNativeQuery("SELECT ESTADO FROM ACTIVIDAD WHERE ESTADO='" + "NO ATENDIDO" + "' AND TIPO='" + "Llamada Telefonica" + "'");
         BarChartModel model = new BarChartModel();
         ChartSeries llr = new ChartSeries();
         llr.setLabel("Llamadas respondidas");
@@ -176,7 +177,7 @@ public class Estadistica1Controller implements Serializable {
 
     public BarChartModel initBarModelCorreo() {
         BarChartModel model = new BarChartModel();
-        Query q2 = em1.createNativeQuery("SELECT ESTADO FROM ACTIVIDAD WHERE ESTADO='" + "atendido" + "' AND TIPO='" + "correo" + "'");
+        Query q2 = em1.createNativeQuery("SELECT ESTADO FROM ACTIVIDAD WHERE ESTADO='" + "ATENDIDO" + "' AND TIPO='" + "Correo Electronico" + "'");
         ChartSeries ce = new ChartSeries();
         ce.setLabel("Correos enviados");
         ce.set("correos enviados", q2.getResultList().size());
@@ -186,7 +187,7 @@ public class Estadistica1Controller implements Serializable {
 
     public BarChartModel initBarModelSMS() {
         BarChartModel model = new BarChartModel();
-        Query q4 = em1.createNativeQuery("SELECT ESTADO FROM ACTIVIDAD WHERE ESTADO='" + "atendido" + "' AND TIPO='" + "sms" + "'");
+        Query q4 = em1.createNativeQuery("SELECT ESTADO FROM ACTIVIDAD WHERE ESTADO='" + "ATENDIDO" + "' AND TIPO='" + "SMS" + "'");
         ChartSeries smse = new ChartSeries();
         smse.setLabel("SMS");
         smse.set("SMS Enviados", q4.getResultList().size());
